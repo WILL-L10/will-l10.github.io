@@ -77,11 +77,11 @@ params:
   about:
     enable: true
     title: "About Me"
-    image: "/images/about.jpg"  # Photo of you + Luna would be perfect here!
+    image: "/images/about.jpg"
     content: |-
-      I'm a Computer & Electrical Engineering student at the University of Nevada, Las Vegas, with a passion for hardware design and digital systems. My experience spans from designing custom multicycle processors to hands-on residential construction and renovation work.
+      I'm a Computer & Electrical Engineering dual major at the University of Nevada, Las Vegas, with a passion for hardware design and digital systems. My experience spans from designing custom multicycle processors to hands-on residential construction and renovation work.
 
-      When I'm not coding or building circuits, you'll find me snowboarding, at the gym, or spending time with my Australian Shepherd, Luna. I'm fluent in both English and Spanish, and I bring the same problem-solving mindset from engineering to every project I tackle.
+      When I'm not coding or building circuits, you'll find me snowboarding, at the gym, or spending time with my Australian Shepherd, Luna. I'm native in Spanish and fluent in English, and I bring the same problem-solving mindset from engineering to every project I tackle.
 
       **Current Focus:** Seeking summer 2025 internships in computer/electrical engineering where I can apply my processor design experience and contribute to real-world hardware/software systems.
     skills:
@@ -93,7 +93,7 @@ params:
         - "Programming: C++, Data Structures & Algorithms"
         - "Tools: Quartus II, ModelSim, TimeQuest Timing Analyzer"
         - "Practical Skills: Electrical Installation, Construction, Problem-Solving"
-        - "Languages: English (Native), Spanish (Fluent)"
+        - "Languages: Spanish (Native), English (Fluent)"
 
   # Experience Section
   experience:
@@ -133,13 +133,14 @@ params:
   education:
     enable: true
     items:
-      - title: "Bachelor of Science in Computer Engineering"
+      - title: "Bachelor of Science in Computer & Electrical Engineering"
         school:
           name: "University of Nevada, Las Vegas"
           url: "https://www.unlv.edu/"
         date: "2022 - 2026 (Expected)"
-        GPA: "3.0"
         content: |-
+          **Dual Major:** Computer Engineering & Electrical Engineering
+
           **Relevant Coursework:**
           - CPE 300L: Digital System Architecture & Design
           - Data Structures & Algorithms
