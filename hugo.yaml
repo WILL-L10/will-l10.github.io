@@ -224,8 +224,17 @@ params:
   achievements:
     enable: true
     items:
-      - title: "Custom Processor Design"
-        content: "Designed complete 8-bit processor from scratch with custom ISA, capable of matrix operations (addition, multiplication, inversion) using only integer arithmetic."
+       - title: "Custom 8-Bit Multicycle Processor (SMM Processor)"
+        content: "Designed and implemented a complete custom processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities. Deployed on Altera DE2-115 FPGA with programmable memory interface."
+        image: /images/projects/processor.jpg
+        featured:
+          name: "View Details"
+          link: /projects/custom-processor
+        badges:
+          - "SystemVerilog"
+          - "FPGA"
+          - "Processor Design"
+          - "Digital Systems"
       
       - title: "FPGA Deployment"
         content: "Successfully deployed multiple processor designs (ARM, MIPS, Custom) on Altera DE2-115 FPGA with real-time hardware debugging."
