@@ -160,7 +160,7 @@ params:
           - Class of 2022
 
   # Projects Section
-   projects:
+ projects:
     enable: true
     items:
       - title: "Custom 8-Bit Multicycle Processor"
