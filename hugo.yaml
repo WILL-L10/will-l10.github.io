@@ -160,65 +160,60 @@ params:
           - Class of 2022
 
   # Projects Section
-  projects:
+   projects:
     enable: true
     items:
-      - title: "Custom 8-Bit Multicycle Processor (SMM Processor)"
-        content: "Designed and implemented a complete custom processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities. Deployed on Altera DE2-115 FPGA with programmable memory interface."
+      - title: "Custom 8-Bit Multicycle Processor"
+        content: "Complete processor design with custom ISA, FSM control, and matrix operations on FPGA."
         image: /images/projects/processor.jpg
         featured:
-          name: "View on GitHub"
-          link: https://github.com/Will-L10
+          name: "View Details"
+          link: /projects/custom-processor
         badges:
           - "SystemVerilog"
           - "FPGA"
           - "Processor Design"
-          - "Digital Systems"
         links:
           - icon: fab fa-github
             url: https://github.com/Will-L10
 
-      - title: "ARM Processor with Extended Instruction Set"
-        content: "Implemented single-cycle ARM processor in Verilog with custom EOR and LDRB instructions. Designed complete datapath, ALU, control unit, and memory systems. Achieved 100% simulation accuracy and successful FPGA deployment."
+      - title: "ARM Processor with Extended Instructions"
+        content: "Single-cycle ARM processor with custom EOR and LDRB instructions deployed on FPGA."
         image: /images/projects/arm.jpg
         badges:
           - "Verilog"
           - "ARM Architecture"
           - "ModelSim"
-          - "Hardware Debugging"
         links:
           - icon: fab fa-github
             url: https://github.com/Will-L10
 
-      - title: "MIPS Processor with Subroutine Support"
-        content: "Built complete single-cycle MIPS CPU supporting Load/Store architecture. Implemented JAL (Jump and Link) and JR instructions for subroutine functionality. Optimized timing using TimeQuest analysis for stable FPGA operation."
+      - title: "MIPS Processor with Subroutines"
+        content: "Complete MIPS CPU with JAL/JR instructions and timing optimization on FPGA."
         image: /images/projects/mips.jpg
         badges:
           - "Verilog"
           - "MIPS Architecture"
           - "Timing Analysis"
-          - "FPGA Implementation"
         links:
           - icon: fab fa-github
             url: https://github.com/Will-L10
 
-      - title: "Hardware GCD Algorithm with Memory Systems"
-        content:"Designed and implemented complete custom processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities."
-        image: /images/projects/gcd.jpg
+      - title: "Hardware GCD Algorithm"
+        content: "General datapath implementation using FSM with memory systems and timing analysis."
+        image: /images/projects/processor.jpg
         badges:
           - "Digital Design"
           - "FSM"
-          - "Memory Systems"
           - "Quartus II"
 
       - title: "Residential Renovation Portfolio"
-        content: "Complete home renovations including electrical installation, hardwood flooring, bathroom remodeling, and interior finishing. Demonstrates practical problem-solving and precision in real-world applications."
-        image: /images/projects/construction1.jpg  # Use your before/after bathroom photo
+        content: "Complete home renovations including electrical, hardwood flooring, and bathroom remodeling."
+        image: /images/projects/construction1.jpg
         badges:
           - "Electrical Work"
           - "Hardwood Flooring"
           - "Project Management"
-          - "Quality Craftsmanship"
 
   # Achievements/Interests Section
   achievements:
