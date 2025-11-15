@@ -12,6 +12,7 @@ outputs:
     - "HTML"
     - "RSS"
 
+paginate: 3
 enableRobotsTXT: true
 
 markup:
@@ -22,18 +23,10 @@ markup:
 params:
   title: "William Lazcano"
   description: Computer & Electrical Engineering Student at UNLV
-  # staticPath: ""  # The path to serve static files from
   favicon: "/images/favicon.png"
 
-  # Whether to serve bootstrap css and js files from CDN or not
   useBootstrapCDN: false
 
-  # If you want to load dynamically responsive images from Cloudinary
-  # This requires your images to be uploaded + hosted on Cloudinary
-  # Uncomment and change YOUR_CLOUD_NAME to the Cloud Name in your Cloudinary console
-  # cloudinary_cloud_name: "YOUR_CLOUD_NAME"
-
-  # Color modes - dark/light toggle
   color:
     textColor: "#343a40"
     secondaryTextColor: "#6c757d"
@@ -50,14 +43,13 @@ params:
       primaryColor: "#ffffff"
       secondaryColor: "#212529"
 
-  # Hero Section
   hero:
     enable: true
     intro: "Hi, my name is"
     title: "William Lazcano"
     subtitle: "I build processors and solve problems"
-    content: "Computer & Electrical Engineering student at UNLV with hands-on experience designing custom processors, implementing complex digital systems, and practical construction work. Passionate about hardware design, low-level systems, and creating reliable solutions."
-    image: /images/profile.jpg  # Add your photo here
+    content: "Computer & Electrical Engineering dual major at UNLV with hands-on experience designing custom processors, implementing complex digital systems, and practical construction work. Passionate about hardware design, low-level systems, and creating reliable solutions."
+    image: /images/profile.jpg
     bottomImage:
       enable: true
     button:
@@ -71,9 +63,8 @@ params:
         - icon: fab fa-github
           url: https://github.com/Will-L10
         - icon: fab fa-linkedin
-          url: https://linkedin.com/in/williamlazcano  # Update with your LinkedIn
+          url: https://linkedin.com/in/williamlazcano
 
-  # About Section
   about:
     enable: true
     title: "About Me"
@@ -95,7 +86,6 @@ params:
         - "Practical Skills: Electrical Installation, Construction, Problem-Solving"
         - "Languages: Spanish (Native), English (Fluent)"
 
-  # Experience Section
   experience:
     enable: true
     items:
@@ -118,7 +108,7 @@ params:
           - Deliver exceptional customer service in fast-paced retail environment
           - Collaborate with cross-functional teams to achieve store goals
           - Demonstrate quick learning and adaptability across multiple departments
-          - Utilize bilingual skills (English/Spanish) to assist diverse customer base
+          - Utilize bilingual skills (Spanish/English) to assist diverse customer base
 
       - job: "Ice-Skating Monitor"
         company: "Enchant"
@@ -129,7 +119,6 @@ params:
           - Maintained situational awareness and responded to potential emergencies
           - Provided excellent customer service in high-volume seasonal environment
 
-  # Education Section
   education:
     enable: true
     items:
@@ -159,12 +148,11 @@ params:
           - Honors and AP Student
           - Class of 2022
 
-  # Projects Section
- projects:
+  projects:
     enable: true
     items:
       - title: "Custom 8-Bit Multicycle Processor"
-        content: "Complete processor design with custom ISA, FSM control, and matrix operations on FPGA."
+        content: "Complete processor design with custom ISA and FSM control for matrix operations on FPGA."
         image: /images/projects/processor.jpg
         featured:
           name: "View Details"
@@ -178,7 +166,7 @@ params:
             url: https://github.com/Will-L10
 
       - title: "ARM Processor with Extended Instructions"
-        content: "Single-cycle ARM processor with custom EOR and LDRB instructions deployed on FPGA."
+        content: "Single-cycle ARM processor with custom EOR and LDRB instructions on FPGA."
         image: /images/projects/arm.jpg
         badges:
           - "Verilog"
@@ -189,7 +177,7 @@ params:
             url: https://github.com/Will-L10
 
       - title: "MIPS Processor with Subroutines"
-        content: "Complete MIPS CPU with JAL/JR instructions and timing optimization on FPGA."
+        content: "Complete MIPS CPU with JAL/JR instructions and timing optimization."
         image: /images/projects/mips.jpg
         badges:
           - "Verilog"
@@ -200,7 +188,7 @@ params:
             url: https://github.com/Will-L10
 
       - title: "Hardware GCD Algorithm"
-        content: "General datapath implementation using FSM with memory systems and timing analysis."
+        content: "General datapath using FSM with memory systems and timing analysis."
         image: /images/projects/processor.jpg
         badges:
           - "Digital Design"
@@ -208,40 +196,28 @@ params:
           - "Quartus II"
 
       - title: "Residential Renovation Portfolio"
-        content: "Complete home renovations including electrical, hardwood flooring, and bathroom remodeling."
+        content: "Complete home renovations including electrical and hardwood flooring."
         image: /images/projects/construction1.jpg
         badges:
           - "Electrical Work"
           - "Hardwood Flooring"
           - "Project Management"
 
-  # Achievements/Interests Section
   achievements:
     enable: true
     items:
-       - title: "Custom 8-Bit Multicycle Processor (SMM Processor)"
-        content: "Designed and implemented complete custom processor from scratch with 16-instruction ISA, 
-FSM-based control unit, and matrix computation capabilities. Deployed on Altera DE2-115 FPGA."
-        image: /images/projects/processor.jpg
-        featured:
-          name: "View Details"
-          link: /projects/custom-processor
-        badges:
-          - "SystemVerilog"
-          - "FPGA"
-          - "Processor Design"
-          - "Digital Systems"
+      - title: "Custom Processor Design"
+        content: "Designed complete 8-bit processor from scratch with custom ISA capable of matrix operations."
       
       - title: "FPGA Deployment"
-        content: "Successfully deployed multiple processor designs (ARM, MIPS, Custom) on Altera DE2-115 FPGA with real-time hardware debugging."
+        content: "Successfully deployed multiple processor designs on Altera DE2-115 FPGA with real-time debugging."
       
       - title: "Bilingual Technical Communication"
-        content: "Fluent in English and Spanish, enabling effective collaboration in diverse engineering and construction teams."
+        content: "Native Spanish and fluent English enabling effective collaboration in diverse teams."
       
       - title: "Hands-On Problem Solver"
-        content: "6+ years of practical construction experience working with electrical systems, power tools, and precision installations."
+        content: "6+ years of practical construction experience with electrical systems and precision installations."
 
-  # Hobbies/Interests
   hobbies:
     enable: true
     title: "Beyond Engineering"
@@ -255,7 +231,6 @@ FSM-based control unit, and matrix computation capabilities. Deployed on Altera 
       - 🎵 **Music** - Metal and rock while coding
       - 📺 **Game of Thrones** - Background viewing during work sessions
 
-  # Contact Section
   contact:
     enable: true
     title: "Get in Touch"
@@ -272,13 +247,11 @@ FSM-based control unit, and matrix computation capabilities. Deployed on Altera 
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/Will-L10
-      linkedin: https://linkedin.com/in/williamlazcano  # Update with yours
+      linkedin: https://linkedin.com/in/williamlazcano
 
-  # List pages (like blogs and projects)
   listPages:
     disableFeaturedImage: false
 
-  # Single pages (like blog posts)
   singlePages:
     readTime:
       enable: true
@@ -286,7 +259,6 @@ FSM-based control unit, and matrix computation capabilities. Deployed on Altera 
     scrollprogress:
       enable: true
 
-  # Terms and Privacy (optional)
   terms:
     read: "Read"
     toc: "Table Of Contents"
