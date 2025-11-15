@@ -225,7 +225,7 @@ params:
     enable: true
     items:
        - title: "Custom 8-Bit Multicycle Processor (SMM Processor)"
-        content: "Designed and implemented a complete custom processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities. Deployed on Altera DE2-115 FPGA with programmable memory interface."
+        content: "Designed and implemented complete custom processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities. Deployed on Altera DE2-115 FPGA."
         image: /images/projects/processor.jpg
         featured:
           name: "View Details"
