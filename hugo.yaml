@@ -1,0 +1,294 @@
+baseURL: "https://will-l10.github.io/"
+languageCode: "en-us"
+title: "William Lazcano | Computer & Electrical Engineering"
+theme: "hugo-profile"
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+params:
+  title: "William Lazcano"
+  description: Computer & Electrical Engineering Student at UNLV
+  # staticPath: ""  # The path to serve static files from
+  favicon: "/images/favicon.png"
+
+  # Whether to serve bootstrap css and js files from CDN or not
+  useBootstrapCDN: false
+
+  # If you want to load dynamically responsive images from Cloudinary
+  # This requires your images to be uploaded + hosted on Cloudinary
+  # Uncomment and change YOUR_CLOUD_NAME to the Cloud Name in your Cloudinary console
+  # cloudinary_cloud_name: "YOUR_CLOUD_NAME"
+
+  # Color modes - dark/light toggle
+  color:
+    textColor: "#343a40"
+    secondaryTextColor: "#6c757d"
+    backgroundColor: "#eaedf0"
+    secondaryBackgroundColor: "#64ffda1a"
+    primaryColor: "#007bff"
+    secondaryColor: "#f8f9fa"
+
+    darkmode:
+      textColor: "#e4e6eb"
+      secondaryTextColor: "#b0b3b8"
+      backgroundColor: "#18191a"
+      secondaryBackgroundColor: "#212529"
+      primaryColor: "#ffffff"
+      secondaryColor: "#212529"
+
+  # Hero Section
+  hero:
+    enable: true
+    intro: "Hi, my name is"
+    title: "William Lazcano"
+    subtitle: "I build processors and solve problems"
+    content: "Computer & Electrical Engineering student at UNLV with hands-on experience designing custom processors, implementing complex digital systems, and practical construction work. Passionate about hardware design, low-level systems, and creating reliable solutions."
+    image: /images/profile.jpg  # Add your photo here
+    bottomImage:
+      enable: true
+    button:
+      enable: true
+      name: "Resume"
+      url: "#"
+      download: true
+      newPage: false
+    socialLinks:
+      fontAwesomeIcons:
+        - icon: fab fa-github
+          url: https://github.com/Will-L10
+        - icon: fab fa-linkedin
+          url: https://linkedin.com/in/williamlazcano  # Update with your LinkedIn
+
+  # About Section
+  about:
+    enable: true
+    title: "About Me"
+    image: "/images/about.jpg"  # Photo of you + Luna would be perfect here!
+    content: |-
+      I'm a Computer & Electrical Engineering student at the University of Nevada, Las Vegas, with a passion for hardware design and digital systems. My experience spans from designing custom multicycle processors to hands-on residential construction and renovation work.
+
+      When I'm not coding or building circuits, you'll find me snowboarding, at the gym, or spending time with my Australian Shepherd, Luna. I'm fluent in both English and Spanish, and I bring the same problem-solving mindset from engineering to every project I tackle.
+
+      **Current Focus:** Seeking summer 2025 internships in computer/electrical engineering where I can apply my processor design experience and contribute to real-world hardware/software systems.
+    skills:
+      enable: true
+      title: "Technical Skills:"
+      items:
+        - "Hardware Design: Verilog/SystemVerilog, FPGA (Altera DE2-115)"
+        - "Processor Architecture: ARM, MIPS, Custom Multicycle Processors"
+        - "Programming: C++, Data Structures & Algorithms"
+        - "Tools: Quartus II, ModelSim, TimeQuest Timing Analyzer"
+        - "Practical Skills: Electrical Installation, Construction, Problem-Solving"
+        - "Languages: English (Native), Spanish (Fluent)"
+
+  # Experience Section
+  experience:
+    enable: true
+    items:
+      - job: "Residential Construction & Renovation Specialist"
+        company: "Lazcano Family Construction"
+        companyUrl: ""
+        date: "2019 - Present"
+        content: |
+          - Execute complete residential renovations including electrical installation, hardwood flooring, drywall repair, and plumbing fixture setup
+          - Install and wire electrical outlets, switches, and lighting fixtures following NEC standards
+          - Perform precision measurements and problem-solving for custom installations
+          - Collaborate with team to complete projects on schedule while maintaining quality standards
+          - Developed hands-on troubleshooting skills and attention to detail in real-world applications
+
+      - job: "Team Member"
+        company: "Target"
+        companyUrl: "https://www.target.com"
+        date: "May 2023 - Present"
+        content: |
+          - Deliver exceptional customer service in fast-paced retail environment
+          - Collaborate with cross-functional teams to achieve store goals
+          - Demonstrate quick learning and adaptability across multiple departments
+          - Utilize bilingual skills (English/Spanish) to assist diverse customer base
+
+      - job: "Ice-Skating Monitor"
+        company: "Enchant"
+        companyUrl: ""
+        date: "November 2021 - January 2022"
+        content: |
+          - Monitored guest safety for 50+ simultaneous skaters
+          - Maintained situational awareness and responded to potential emergencies
+          - Provided excellent customer service in high-volume seasonal environment
+
+  # Education Section
+  education:
+    enable: true
+    items:
+      - title: "Bachelor of Science in Computer Engineering"
+        school:
+          name: "University of Nevada, Las Vegas"
+          url: "https://www.unlv.edu/"
+        date: "2022 - 2026 (Expected)"
+        GPA: "3.0"
+        content: |-
+          **Relevant Coursework:**
+          - CPE 300L: Digital System Architecture & Design
+          - Data Structures & Algorithms
+          - C++ Programming
+          - Computer Systems & Organization
+
+          **Projects:** ARM Processor Implementation, MIPS CPU Design, Custom Multicycle Processor
+
+      - title: "High School Diploma"
+        school:
+          name: "Doral Academy Red Rock High School"
+          url: ""
+        date: "2018 - 2022"
+        GPA: "3.8"
+        content: |-
+          - Honors and AP Student
+          - Class of 2022
+
+  # Projects Section
+  projects:
+    enable: true
+    items:
+      - title: "Custom 8-Bit Multicycle Processor (SMM Processor)"
+        content: "Designed and implemented a complete custom processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities. Deployed on Altera DE2-115 FPGA with programmable memory interface."
+        image: /images/projects/processor.jpg
+        featured:
+          name: "View on GitHub"
+          link: https://github.com/Will-L10
+        badges:
+          - "SystemVerilog"
+          - "FPGA"
+          - "Processor Design"
+          - "Digital Systems"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
+
+      - title: "ARM Processor with Extended Instruction Set"
+        content: "Implemented single-cycle ARM processor in Verilog with custom EOR and LDRB instructions. Designed complete datapath, ALU, control unit, and memory systems. Achieved 100% simulation accuracy and successful FPGA deployment."
+        image: /images/projects/arm.jpg
+        badges:
+          - "Verilog"
+          - "ARM Architecture"
+          - "ModelSim"
+          - "Hardware Debugging"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
+
+      - title: "MIPS Processor with Subroutine Support"
+        content: "Built complete single-cycle MIPS CPU supporting Load/Store architecture. Implemented JAL (Jump and Link) and JR instructions for subroutine functionality. Optimized timing using TimeQuest analysis for stable FPGA operation."
+        image: /images/projects/mips.jpg
+        badges:
+          - "Verilog"
+          - "MIPS Architecture"
+          - "Timing Analysis"
+          - "FPGA Implementation"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
+
+      - title: "Hardware GCD Algorithm with Memory Systems"
+        content: "Created general datapath for Greatest Common Divisor algorithm using FSM design. Performed comprehensive timing analysis with slack violation resolution. Designed single-port RAM module with synchronous operations."
+        image: /images/projects/gcd.jpg
+        badges:
+          - "Digital Design"
+          - "FSM"
+          - "Memory Systems"
+          - "Quartus II"
+
+      - title: "Residential Renovation Portfolio"
+        content: "Complete home renovations including electrical installation, hardwood flooring, bathroom remodeling, and interior finishing. Demonstrates practical problem-solving and precision in real-world applications."
+        image: /images/projects/construction1.jpg  # Use your before/after bathroom photo
+        badges:
+          - "Electrical Work"
+          - "Hardwood Flooring"
+          - "Project Management"
+          - "Quality Craftsmanship"
+
+  # Achievements/Interests Section
+  achievements:
+    enable: true
+    items:
+      - title: "Custom Processor Design"
+        content: "Designed complete 8-bit processor from scratch with custom ISA, capable of matrix operations (addition, multiplication, inversion) using only integer arithmetic."
+      
+      - title: "FPGA Deployment"
+        content: "Successfully deployed multiple processor designs (ARM, MIPS, Custom) on Altera DE2-115 FPGA with real-time hardware debugging."
+      
+      - title: "Bilingual Technical Communication"
+        content: "Fluent in English and Spanish, enabling effective collaboration in diverse engineering and construction teams."
+      
+      - title: "Hands-On Problem Solver"
+        content: "6+ years of practical construction experience working with electrical systems, power tools, and precision installations."
+
+  # Hobbies/Interests
+  hobbies:
+    enable: true
+    title: "Beyond Engineering"
+    content: |-
+      When I'm not designing processors or working on construction projects, I enjoy:
+      
+      - 🏂 **Snowboarding** - Hitting the slopes whenever possible
+      - 🏋️ **Fitness** - Regular gym sessions to stay sharp
+      - 🐕 **Luna** - Quality time with my Australian Shepherd
+      - 🎮 **Gaming** - Competitive and strategy games
+      - 🎵 **Music** - Metal and rock while coding
+      - 📺 **Game of Thrones** - Background viewing during work sessions
+
+  # Contact Section
+  contact:
+    enable: true
+    title: "Get in Touch"
+    content: I'm currently seeking summer 2025 internships in computer/electrical engineering. Feel free to reach out!
+    email: williamgarcia050604@icloud.com
+    btnName: "Email Me"
+
+  footer:
+    recentPosts:
+      path: "blogs"
+      count: 3
+      title: Recent Blog Posts
+      enable: false
+      disableFeaturedImage: false
+    socialNetworks:
+      github: https://github.com/Will-L10
+      linkedin: https://linkedin.com/in/williamlazcano  # Update with yours
+
+  # List pages (like blogs and projects)
+  listPages:
+    disableFeaturedImage: false
+
+  # Single pages (like blog posts)
+  singlePages:
+    readTime:
+      enable: true
+      content: "min read"
+    scrollprogress:
+      enable: true
+
+  # Terms and Privacy (optional)
+  terms:
+    read: "Read"
+    toc: "Table Of Contents"
+    copyright: "All rights reserved"
+    pageNotFound: "Page not found"
+    emailText: "Check out this site"
+
+  datesFormat:
+    article: "Jan 2, 2006"
+    articleList: "Jan 2, 2006"
+    articleRecent: "Jan 2, 2006"
