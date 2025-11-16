@@ -9,14 +9,10 @@ draft: false
 author: "William Lazcano"
 
 tags:
-
-&nbsp; - SystemVerilog
-
-&nbsp; - FPGA
-
-&nbsp; - Processor Design
-
-&nbsp; - Digital Systems
+  - SystemVerilog
+  - FPGA
+  - Processor Design
+  - Digital Systems
 
 image: /images/projects/processor.jpg
 
