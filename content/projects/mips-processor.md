@@ -1,15 +1,8 @@
 ---
-
 title: "MIPS Processor with Subroutine Support"
-
 date: 2024-06-01
-
 draft: false
-
 description: "Complete single-cycle MIPS CPU with JAL/JR instructions for function calls"
-
-image: "/images/projects/mips.jpg"
-
 ---
 
 

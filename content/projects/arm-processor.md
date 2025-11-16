@@ -1,17 +1,9 @@
 ---
-
 title: "ARM Processor with Extended Instruction Set"
-
 date: 2024-07-01
-
 draft: false
-
 description: "Single-cycle ARM processor implementation with custom EOR and LDRB instructions"
-
-image: "/images/projects/arm.jpg"
-
 ---
-
 
 
 \## Project Overview
