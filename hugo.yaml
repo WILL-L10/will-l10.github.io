@@ -12,7 +12,8 @@ outputs:
     - "HTML"
     - "RSS"
 
-paginate: 3
+pagination:
+  pageSize: 3
 enableRobotsTXT: true
 
 markup:
