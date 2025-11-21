@@ -21,12 +21,32 @@ markup:
     renderer:
       unsafe: true
 
+# Add menu configuration
+menu:
+  main:
+    - name: Blog
+      url: /blogs/
+      weight: 1
+
 params:
   title: "William Lazcano"
   description: Computer & Electrical Engineering Student at UNLV
   favicon: "/images/favicon.png"
 
   useBootstrapCDN: false
+
+  # Enable navbar
+  navbar:
+    enable: true
+    sticky: true
+    disableSearch: false
+    menus:
+      disableAbout: false
+      disableExperience: false
+      disableEducation: false
+      disableProjects: false
+      disableAchievements: false
+      disableContact: false
 
   color:
     textColor: "#343a40"
@@ -155,6 +175,9 @@ params:
       - title: "Custom 8-Bit Multicycle Processor (SMM Processor)"
         content: "Designed and implemented a complete custom processor from scratch with 16-instruction ISA and FSM-based control unit. Features include arithmetic operations (ADD, SUB, MULT, DIV), logic operations (AND, OR, XOR, NOT), and control flow (JUMP, conditional branches). Successfully executed 2×2 matrix operations including addition, subtraction, multiplication, and inversion entirely in software using integer arithmetic. Deployed on Altera DE2-115 FPGA with 512-byte unified memory and real-time 7-segment display output. Implemented manual programming mode using FPGA switches for direct memory manipulation and testing. Achieved stable operation with comprehensive debugging features including pause-on-write and display of PC, opcode, and accumulator contents."
         image: /images/projects/processor.jpg
+        featured:
+          name: Read More
+          link: /blogs/custom-processor/
         badges:
           - "SystemVerilog"
           - "FPGA"
@@ -168,6 +191,9 @@ params:
       - title: "ARM Processor with Extended Instruction Set"
         content: "Built complete single-cycle ARM processor in Verilog and extended it with custom EOR (Exclusive OR) and LDRB (Load Register Byte) instructions. Expanded ALU from 2-bit to 3-bit control to support XOR operation while maintaining flag updates. Implemented byte selection logic for LDRB instruction to extract individual bytes from word-aligned memory based on address bits. Modified main decoder, ALU decoder, and datapath to support new instructions. Created comprehensive testbench achieving 100% simulation accuracy in ModelSim. Successfully deployed on DE2-115 FPGA and verified all arithmetic, logic, and memory operations with waveform analysis. Optimized critical path timing using TimeQuest Timing Analyzer."
         image: /images/projects/arm.jpg
+        featured:
+          name: Read More
+          link: /blogs/arm-processor/
         badges:
           - "Verilog"
           - "ARM Architecture"
@@ -181,6 +207,9 @@ params:
       - title: "MIPS Processor with Subroutine Support"
         content: "Constructed complete single-cycle MIPS CPU supporting Load/Store architecture with 32 general-purpose registers. Implemented JAL (Jump and Link) and JR (Jump Register) instructions to enable subroutine calls and returns - essential for structured programming. Extended datapath with MUXes for register destination selection and write data routing to support saving return addresses in register 31. Developed assembly programs demonstrating function calls, tested computation of (a+b)*2 using subroutines. Deployed on DE2-115 FPGA with 7-segment display showing PC, instructions, and memory operations in real-time. Performed timing analysis using TimeQuest to identify and optimize critical paths, achieving stable 50MHz operation. Implemented clock division and pause-on-write features for step-by-step debugging."
         image: /images/projects/mips.jpg
+        featured:
+          name: Read More
+          link: /blogs/mips-processor/
         badges:
           - "Verilog"
           - "MIPS Architecture"
@@ -194,6 +223,9 @@ params:
       - title: "Hardware GCD Algorithm Implementation"
         content: "Created general datapath for Greatest Common Divisor algorithm using finite state machine design methodology. Designed and verified complete control unit with state graph and control word table for instruction sequencing. Performed comprehensive timing analysis using TimeQuest Timing Analyzer, identifying and resolving slack violations in critical paths to ensure stable operation. Implemented single-port RAM module (16x8) with synchronous read/write operations and memory initialization from external files. Validated complete design through ModelSim testbench simulation and physical testing on DE2-115 board. Demonstrated understanding of digital system design principles including datapath construction, FSM control, and timing optimization."
         image: /images/projects/processor.jpg
+        featured:
+          name: Read More
+          link: /blogs/gcd-algorithm/
         badges:
           - "Digital Design"
           - "FSM"
@@ -204,6 +236,9 @@ params:
       - title: "Residential Renovation & Electrical Work"
         content: "Execute complete residential renovations for family construction business since 2019. Install and wire electrical outlets, switches, and lighting fixtures following NEC standards, including troubleshooting and repairs. Perform precision hardwood flooring installation with attention to measurements and custom cuts for complex layouts. Complete drywall installation, repair, and finishing including taping, mudding, and sanding. Install plumbing fixtures and collaborate on full-room renovations requiring coordination of multiple trades. Demonstrated projects include complete bathroom remodels with electrical, plumbing, tile work, and finishing. Developed hands-on problem-solving skills and practical understanding of building systems that complement theoretical engineering knowledge."
         image: /images/projects/construction1.jpg
+        featured:
+          name: Read More
+          link: /blogs/construction-portfolio/
         badges:
           - "Electrical Work"
           - "Hardwood Flooring"
@@ -251,7 +286,7 @@ params:
       path: "blogs"
       count: 3
       title: Recent Blog Posts
-      enable: false
+      enable: true
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/Will-L10
