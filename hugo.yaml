@@ -13,7 +13,7 @@ outputs:
     - "RSS"
 
 pagination:
-  pageSize: 3
+  pageSize: 10
 enableRobotsTXT: true
 
 markup:
