@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Digital Systems on William Lazcano | Computer &amp; Electrical Engineering</title><link>https://will-l10.github.io/tags/digital-systems/</link><description>Recent content in Digital Systems on William Lazcano | Computer &amp; Electrical Engineering</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 01 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://will-l10.github.io/tags/digital-systems/index.xml" rel="self" type="application/rss+xml"/><item><title>Custom 8-Bit Multicycle Processor</title><link>https://will-l10.github.io/blogs/custom-processor/</link><pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/custom-processor/</guid><description>&lt;p&gt;## Project Overview&lt;/p&gt;
+&lt;p&gt;Designed and implemented a complete custom 8-bit multicycle processor from scratch as my final project for CPE 300L. The processor features a 16-instruction ISA, finite state machine-based control unit, and the ability to perform 2×2 matrix operations.&lt;/p&gt;
+&lt;p&gt;![Processor Datapath](/images/projects/processor.jpg)&lt;/p&gt;
+&lt;p&gt;## Technical Specifications&lt;/p&gt;
+&lt;p&gt;**Architecture:**&lt;/p&gt;
+&lt;p&gt;- **Instruction Set:** 16 custom instructions&lt;/p&gt;
+&lt;p&gt;- **Memory:** 512-byte unified memory&lt;/p&gt;
+&lt;p&gt;- **Data Width:** 8-bit operations&lt;/p&gt;
+&lt;p&gt;- **Execution:** Multicycle (1-4 cycles)&lt;/p&gt;
+&lt;p&gt;- **Platform:** Altera DE2-115 FPGA&lt;/p&gt;</description></item></channel></rss>

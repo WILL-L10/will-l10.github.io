@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MIPS on William Lazcano | Computer &amp; Electrical Engineering</title><link>https://will-l10.github.io/tags/mips/</link><description>Recent content in MIPS on William Lazcano | Computer &amp; Electrical Engineering</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 20 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://will-l10.github.io/tags/mips/index.xml" rel="self" type="application/rss+xml"/><item><title>MIPS Processor with Extended ISA</title><link>https://will-l10.github.io/blogs/mips-processor/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/mips-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
+&lt;p&gt;Designed and implemented a 5-stage pipelined MIPS processor with hazard detection, data forwarding, and an extended instruction set on FPGA.&lt;/p&gt;
+&lt;h2 id="architecture"&gt;Architecture&lt;/h2&gt;
+&lt;h3 id="pipeline-stages"&gt;Pipeline Stages&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Instruction Fetch (IF)&lt;/strong&gt;: Retrieves instruction from memory&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Instruction Decode (ID)&lt;/strong&gt;: Decodes instruction and reads registers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Execute (EX)&lt;/strong&gt;: Performs ALU operations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory (MEM)&lt;/strong&gt;: Accesses data memory&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write Back (WB)&lt;/strong&gt;: Writes results to register file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="hazard-handling"&gt;Hazard Handling&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Hazards&lt;/strong&gt;: Implemented forwarding paths to eliminate stalls&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Control Hazards&lt;/strong&gt;: Branch prediction with flush mechanism&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Structural Hazards&lt;/strong&gt;: Resolved through separate instruction/data memory&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="implementation-details"&gt;Implementation Details&lt;/h2&gt;
+&lt;h3 id="extended-instructions"&gt;Extended Instructions&lt;/h3&gt;
+&lt;p&gt;Added custom instructions beyond standard MIPS ISA:&lt;/p&gt;</description></item></channel></rss>
