@@ -1,106 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithms on William Lazcano | Computer &amp; Electrical Engineering</title><link>https://will-l10.github.io/tags/algorithms/</link><description>Recent content in Algorithms on William Lazcano | Computer &amp; Electrical Engineering</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 10 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://will-l10.github.io/tags/algorithms/index.xml" rel="self" type="application/rss+xml"/><item><title>GCD Algorithm Hardware Implementation</title><link>https://will-l10.github.io/blogs/gcd-algorithm/</link><pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/gcd-algorithm/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Implemented the Greatest Common Divisor (GCD) algorithm using a Finite State Machine (FSM) approach in hardware, demonstrating algorithm optimization for digital circuits.&lt;/p&gt;
+&lt;p&gt;Created general datapath for Greatest Common Divisor algorithm using finite state machine design methodology, demonstrating algorithm-to-hardware translation.&lt;/p&gt;
 &lt;h2 id="algorithm"&gt;Algorithm&lt;/h2&gt;
 &lt;h3 id="euclidean-algorithm"&gt;Euclidean Algorithm&lt;/h3&gt;
 &lt;p&gt;The GCD algorithm uses the principle:&lt;/p&gt;
 &lt;pre tabindex="0"&gt;&lt;code&gt;GCD(a, b) = GCD(b, a mod b)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Continues until &lt;code&gt;b = 0&lt;/code&gt;, at which point &lt;code&gt;a&lt;/code&gt; is the GCD.&lt;/p&gt;
-&lt;h2 id="fsm-design"&gt;FSM Design&lt;/h2&gt;
+&lt;h3 id="example"&gt;Example&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;GCD(48, 18):
+ 48 mod 18 = 12
+ 18 mod 12 = 6
+ 12 mod 6 = 0
+ Result: 6
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="fsm-design"&gt;FSM Design&lt;/h2&gt;
 &lt;h3 id="state-diagram"&gt;State Diagram&lt;/h3&gt;
-&lt;p&gt;The implementation uses 4 states:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;IDLE&lt;/strong&gt;: Waiting for input&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;LOAD&lt;/strong&gt;: Load operands into registers&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;COMPUTE&lt;/strong&gt;: Perform modulo operation&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;DONE&lt;/strong&gt;: Output result&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id="state-transitions"&gt;State Transitions&lt;/h3&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;IDLE → LOAD (when start signal asserted)
-LOAD → COMPUTE (after loading operands)
-COMPUTE → COMPUTE (while b ≠ 0)
-COMPUTE → DONE (when b = 0)
-DONE → IDLE (when acknowledged)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="implementation"&gt;Implementation&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-verilog" data-lang="verilog"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;module&lt;/span&gt; gcd_fsm (
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;input&lt;/span&gt; clk,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;input&lt;/span&gt; reset,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;input&lt;/span&gt; start,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;input&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;31&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] a_in,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;input&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;31&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] b_in,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;output&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;reg&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;31&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] gcd_out,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;output&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;reg&lt;/span&gt; done
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;);
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// State encoding
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;typedef&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;enum&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;logic&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] {
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; IDLE &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;&amp;#39;b00&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; LOAD &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;&amp;#39;b01&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; COMPUTE &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;&amp;#39;b10&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; DONE_STATE &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;2&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;&amp;#39;b11&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; } state_t;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; state_t current_state, next_state;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;reg&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;31&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] a_reg, b_reg;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;reg&lt;/span&gt; [&lt;span style="color:#ae81ff"&gt;31&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt;&lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;] remainder;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// State register
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;always_ff&lt;/span&gt; @(&lt;span style="color:#66d9ef"&gt;posedge&lt;/span&gt; clk &lt;span style="color:#66d9ef"&gt;or&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;posedge&lt;/span&gt; reset) &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (reset)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; current_state &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; IDLE;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;else&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; current_state &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; next_state;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Next state logic
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;always_comb&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;case&lt;/span&gt; (current_state)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; IDLE: next_state &lt;span style="color:#f92672"&gt;=&lt;/span&gt; start &lt;span style="color:#f92672"&gt;?&lt;/span&gt; LOAD &lt;span style="color:#f92672"&gt;:&lt;/span&gt; IDLE;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; LOAD: next_state &lt;span style="color:#f92672"&gt;=&lt;/span&gt; COMPUTE;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; COMPUTE: next_state &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (b_reg &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;) &lt;span style="color:#f92672"&gt;?&lt;/span&gt; DONE_STATE &lt;span style="color:#f92672"&gt;:&lt;/span&gt; COMPUTE;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; DONE_STATE: next_state &lt;span style="color:#f92672"&gt;=&lt;/span&gt; IDLE;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;default&lt;/span&gt;&lt;span style="color:#f92672"&gt;:&lt;/span&gt; next_state &lt;span style="color:#f92672"&gt;=&lt;/span&gt; IDLE;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;endcase&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// Datapath
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#75715e"&gt;&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;always_ff&lt;/span&gt; @(&lt;span style="color:#66d9ef"&gt;posedge&lt;/span&gt; clk) &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;case&lt;/span&gt; (current_state)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; LOAD: &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; a_reg &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; a_in;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; b_reg &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; b_in;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; done &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; COMPUTE: &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; (b_reg &lt;span style="color:#f92672"&gt;!=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;) &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; remainder &lt;span style="color:#f92672"&gt;=&lt;/span&gt; a_reg &lt;span style="color:#f92672"&gt;%&lt;/span&gt; b_reg;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; a_reg &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; b_reg;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; b_reg &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; remainder;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; DONE_STATE: &lt;span style="color:#66d9ef"&gt;begin&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; gcd_out &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; a_reg;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; done &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;endcase&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;end&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;endmodule&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="optimization"&gt;Optimization&lt;/h2&gt;
-&lt;h3 id="hardware-efficiency"&gt;Hardware Efficiency&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Area&lt;/strong&gt;: Minimal register usage (2 data registers + state register)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Timing&lt;/strong&gt;: Completes in O(log(min(a,b))) clock cycles&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Power&lt;/strong&gt;: Low power consumption through efficient state transitions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="performance"&gt;Performance&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Synthesized to run at 100 MHz on FPGA&lt;/li&gt;
-&lt;li&gt;Average computation time: 5-15 clock cycles for typical inputs&lt;/li&gt;
-&lt;li&gt;Maximum latency: ~50 cycles for worst-case inputs&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="verification"&gt;Verification&lt;/h2&gt;
-&lt;h3 id="testbench-results"&gt;Testbench Results&lt;/h3&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;Test Case 1: GCD(48, 18) = 6 ✓
-Test Case 2: GCD(100, 75) = 25 ✓
-Test Case 3: GCD(17, 19) = 1 ✓
-Test Case 4: GCD(1024, 256) = 256 ✓
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="waveform-analysis"&gt;Waveform Analysis&lt;/h3&gt;
-&lt;p&gt;Verified correct state transitions and data flow using ModelSim simulation.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;The implementation uses 4 states:&lt;/p&gt;</description></item></channel></rss>
