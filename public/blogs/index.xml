@@ -1,94 +1,327 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on William Lazcano | Computer &amp; Electrical Engineering</title><link>https://will-l10.github.io/blogs/</link><description>Recent content in Blogs on William Lazcano | Computer &amp; Electrical Engineering</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 16 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://will-l10.github.io/blogs/index.xml" rel="self" type="application/rss+xml"/><item><title>Custom 8-Bit Multicycle Processor</title><link>https://will-l10.github.io/blogs/custom-processor/</link><pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/custom-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Designed and implemented a complete custom processor from scratch with 16-instruction ISA and FSM-based control unit, capable of executing complex matrix operations entirely in software.&lt;/p&gt;
-&lt;h2 id="architecture"&gt;Architecture&lt;/h2&gt;
-&lt;h3 id="instruction-set-architecture-isa"&gt;Instruction Set Architecture (ISA)&lt;/h3&gt;
-&lt;p&gt;Custom 16-instruction set including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Arithmetic&lt;/strong&gt;: ADD, SUB, MULT, DIV&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Logic&lt;/strong&gt;: AND, OR, XOR, NOT&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Control Flow&lt;/strong&gt;: JUMP, conditional branches (BEQ, BNE, BLT, BGT)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;: LOAD, STORE&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Special&lt;/strong&gt;: NOP, HALT&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="control-unit"&gt;Control Unit&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Finite State Machine (FSM) based control&lt;/li&gt;
-&lt;li&gt;Multi-cycle execution with 5-7 cycles per instruction&lt;/li&gt;
-&lt;li&gt;State-based instruction decode and execution&lt;/li&gt;
-&lt;li&gt;Comprehensive flag management (Zero, Negative, Carry, Overflow)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="implementation"&gt;Implementation&lt;/h2&gt;
-&lt;h3 id="hardware-platform"&gt;Hardware Platform&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;FPGA&lt;/strong&gt;: Altera DE2-115&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;: 512-byte unified instruction/data memory&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Display&lt;/strong&gt;: Real-time 7-segment display showing PC, opcode, accumulator&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Programming&lt;/strong&gt;: Manual mode using FPGA switches for direct memory manipulation&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Designed and implemented a &lt;strong&gt;complete custom 8-bit multicycle processor&lt;/strong&gt; from the ground up, featuring a 16-instruction ISA and FSM-based control unit. This processor successfully executes complex matrix operations entirely in software using integer arithmetic.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/processor.jpg" alt="Processor Block Diagram"&gt;&lt;/p&gt;
+&lt;h3 id="key-specifications"&gt;Key Specifications&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Feature&lt;/th&gt;
+ &lt;th&gt;Specification&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;8-bit multicycle&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Instruction Set&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;16 custom instructions&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Memory&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;512 bytes unified (byte-addressable)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Execution Cycles&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;1-4 cycles per instruction&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Control Logic&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;FSM-based with 6 states&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Target Platform&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="architecture-deep-dive"&gt;Architecture Deep Dive&lt;/h2&gt;
+&lt;h3 id="instruction-set-architecture"&gt;Instruction Set Architecture&lt;/h3&gt;
+&lt;p&gt;The processor implements 16 carefully designed instructions:&lt;/p&gt;</description></item><item><title>ARM Processor Implementation</title><link>https://will-l10.github.io/blogs/arm-processor/</link><pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/arm-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
+&lt;p&gt;Implemented a complete &lt;strong&gt;single-cycle ARM processor&lt;/strong&gt; with extended instruction set on FPGA hardware, demonstrating proficiency in computer architecture and hardware description languages. Successfully added custom &lt;strong&gt;EOR (Exclusive OR)&lt;/strong&gt; and &lt;strong&gt;LDRB (Load Register Byte)&lt;/strong&gt; instructions to the standard ARM ISA.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/arm.jpg" alt="ARM Processor Architecture"&gt;&lt;/p&gt;
+&lt;h3 id="project-highlights"&gt;Project Highlights&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Feature&lt;/th&gt;
+ &lt;th&gt;Details&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;32-bit single-cycle ARM&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Custom Instructions&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;EOR, LDRB&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Memory Model&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Harvard (separate I/D memory)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Platform&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Clock Speed&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;50 MHz&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Language&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Verilog HDL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Verification&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;ModelSim testbench (100% accuracy)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="architecture-components"&gt;Architecture Components&lt;/h2&gt;
+&lt;h3 id="arm-processor-block-diagram"&gt;ARM Processor Block Diagram&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; ┌─────────────────────────────────────┐
+ │ ARM Processor Core │
+ │ │
+ ┌─────────┐ │ ┌──────┐ ┌─────┐ ┌──────┐ │
+ │ Instr │─────▶│ │ PC │───▶│ +4 │───▶│ MUX │ │
+ │ Memory │ │ └──────┘ └─────┘ └───┬──┘ │
+ │ (IMEM) │ │ │ │
+ └─────────┘ │ ┌────────────────────────┐ │ │
+ │ │ Instruction Register │ │ │
+ │ └───────────┬────────────┘ │ │
+ │ ▼ │ │
+ │ ┌──────────────────────┐ │ │
+ │ │ Control Unit │ │ │
+ │ │ ┌─────────────────┐ │ │ │
+ │ │ │ Main Decoder │ │ │ │
+ │ │ │ ALU Decoder │ │ │ │
+ │ │ └─────────────────┘ │ │ │
+ │ └──────────┬───────────┘ │ │
+ │ ▼ │ │
+ │ ┌──────────────────────┐ │ │
+ │ │ Register File │ │ │
+ │ │ (16 x 32-bit) │ │ │
+ │ └───────┬──────────────┘ │ │
+ │ ▼ │ │
+ │ ┌──────────────────────┐ │ │
+ │ │ ALU (3-bit ctrl) │ │ │
+ │ │ + Shifter Unit │ │ │
+ │ └───────┬──────────────┘ │ │
+ │ ▼ │ │
+ ┌─────────┐ │ ┌──────────────────────┐ │ │
+ │ Data │◀────▶│ │ Memory Interface │ │ │
+ │ Memory │ │ │ (Byte Selector) │ │ │
+ │ (DMEM) │ │ └──────────────────────┘ │ │
+ └─────────┘ │ │ │
+ └─────────────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="core-components"&gt;Core Components&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Datapath:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>MIPS Processor with Extended ISA</title><link>https://will-l10.github.io/blogs/mips-processor/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/mips-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
+&lt;p&gt;Designed and implemented a complete &lt;strong&gt;single-cycle MIPS processor&lt;/strong&gt; supporting Load/Store architecture with &lt;strong&gt;32 general-purpose registers&lt;/strong&gt;. Successfully added &lt;strong&gt;JAL (Jump and Link)&lt;/strong&gt; and &lt;strong&gt;JR (Jump Register)&lt;/strong&gt; instructions to enable subroutine calls and returns—essential for structured programming.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/mips.jpg" alt="MIPS Processor Datapath"&gt;&lt;/p&gt;
+&lt;h3 id="project-specifications"&gt;Project Specifications&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Feature&lt;/th&gt;
+ &lt;th&gt;Details&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;32-bit single-cycle MIPS&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Register File&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;32 × 32-bit registers&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Memory Model&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Harvard (separate I/D)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Custom Instructions&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;JAL, JR for subroutines&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Platform&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Clock Speed&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;50 MHz (stable)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Language&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;SystemVerilog&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Display&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;7-segment (PC, instructions, memory ops)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="architecture-overview"&gt;Architecture Overview&lt;/h2&gt;
+&lt;h3 id="mips-processor-block-diagram"&gt;MIPS Processor Block Diagram&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; ┌──────────────────────────────────────┐
+ │ MIPS Processor Core │
+ │ │
+ ┌─────────┐ │ ┌──────┐ ┌─────┐ ┌────────┐ │
+ │ Instr │─────▶│ │ PC │───▶│ +4 │───▶│ MUX │ │
+ │ Memory │ │ └──┬───┘ └──┬──┘ └───┬────┘ │
+ └─────────┘ │ │ │ │ │
+ │ │ ┌────▼────┐ │ │
+ │ │ │ Branch │ │ │
+ │ │ │ Target │ │ │
+ │ │ └────┬────┘ │ │
+ │ │ │ │ │
+ │ │ ┌────▼────┐ │ │
+ │ │ │ JAL │ │ │
+ │ │ │ Target │ │ │
+ │ │ └────┬────┘ │ │
+ │ │ │ │ │
+ │ └───────────┴────────────┘ │
+ │ │
+ │ ┌────────────────────────────────┐ │
+ │ │ Instruction Register │ │
+ │ └─────────────┬──────────────────┘ │
+ │ ▼ │
+ │ ┌────────────────────────────────┐ │
+ │ │ Control Unit │ │
+ │ │ • RegDst • MemtoReg │ │
+ │ │ • RegWrite • MemWrite │ │
+ │ │ • ALUSrc • PCSrc │ │
+ │ └─────────────┬──────────────────┘ │
+ │ ▼ │
+ │ ┌────────────────────────────────┐ │
+ │ │ Register File (32 × 32-bit) │ │
+ │ │ │ │
+ │ │ Read Port 1 ─────────────┐ │ │
+ │ │ Read Port 2 ─────────┐ │ │ │
+ │ │ Write Port ($31 for JAL) │ │ │
+ │ └───────────────┬──────┬─────┘ │ │
+ │ │ │ │ │
+ │ ┌─────▼──────▼─────┐ │ │
+ │ │ MUX (ALUSrc) │ │ │
+ │ └─────────┬────────┘ │ │
+ │ ▼ │ │
+ │ ┌─────────────────┐ │ │
+ │ │ ALU (32-bit) │ │ │
+ │ │ • ADD • SUB │ │ │
+ │ │ • AND • OR │ │ │
+ │ │ • SLT • SLL │ │ │
+ │ └────────┬────────┘ │ │
+ │ ▼ │ │
+ ┌─────────┐ │ ┌────────────────┐ │ │
+ │ Data │◀────▶│ │ Data Memory │ │ │
+ │ Memory │ │ │ (1KB) │ │ │
+ └─────────┘ │ └────────┬───────┘ │ │
+ │ ▼ │ │
+ │ ┌────────────────┐ │ │
+ │ │ MUX (MemtoReg)│ │ │
+ │ └────────┬───────┘ │ │
+ │ │ │ │
+ │ └─────────────┘ │
+ └──────────────────────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="core-features"&gt;Core Features&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Load/Store Architecture:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>GCD Algorithm Hardware Implementation</title><link>https://will-l10.github.io/blogs/gcd-algorithm/</link><pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/gcd-algorithm/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
+&lt;p&gt;Designed and implemented a &lt;strong&gt;hardware-based Greatest Common Divisor (GCD) calculator&lt;/strong&gt; using the Euclidean algorithm. This project transforms a classic software algorithm into optimized digital hardware using a finite state machine, demonstrating the fundamental differences between software and hardware algorithm implementation.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/gcd.jpg" alt="GCD Hardware Block Diagram"&gt;&lt;/p&gt;
 &lt;h3 id="key-features"&gt;Key Features&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Matrix Operations&lt;/strong&gt;: Successfully executed 2×2 matrix operations&lt;/p&gt;</description></item><item><title>Construction &amp; Renovation Portfolio</title><link>https://will-l10.github.io/blogs/construction-portfolio/</link><pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/construction-portfolio/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
-&lt;p&gt;Since 2019, I&amp;rsquo;ve worked on residential construction and renovation projects through my family business, gaining practical experience in electrical installation, flooring, and full bathroom remodeling. This hands-on work complements my engineering education by providing real-world understanding of how systems are built, troubleshot, and maintained.&lt;/p&gt;
-&lt;h2 id="experience--skills"&gt;Experience &amp;amp; Skills&lt;/h2&gt;
-&lt;h3 id="electrical-installation"&gt;Electrical Installation&lt;/h3&gt;
-&lt;p&gt;My electrical work follows NEC (National Electrical Code) standards and includes:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Installation Work:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Residential wiring and circuit installation from panel to outlets&lt;/li&gt;
-&lt;li&gt;Electrical panel upgrades and subpanel installation&lt;/li&gt;
-&lt;li&gt;Lighting fixture installation (recessed, pendant, chandelier)&lt;/li&gt;
-&lt;li&gt;Switch installation (single-pole, 3-way, 4-way, dimmer)&lt;/li&gt;
-&lt;li&gt;GFCI and AFCI outlet installation in required locations&lt;/li&gt;
-&lt;li&gt;Ceiling fan installation with proper bracing&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Troubleshooting &amp;amp; Repair:&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>ARM Processor Implementation</title><link>https://will-l10.github.io/blogs/arm-processor/</link><pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/arm-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Implemented an ARM processor with extended instruction set on FPGA hardware, demonstrating proficiency in computer architecture and hardware description languages.&lt;/p&gt;
-&lt;h2 id="technical-details"&gt;Technical Details&lt;/h2&gt;
-&lt;h3 id="architecture"&gt;Architecture&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Instruction Set&lt;/strong&gt;: Extended ARM ISA with custom instructions&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;: Multi-stage pipeline design&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;: Harvard architecture with separate instruction and data memory&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="custom-instructions-added"&gt;Custom Instructions Added&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;EOR (Exclusive OR)&lt;/strong&gt;: Bitwise XOR operation&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Expanded ALU from 2-bit to 3-bit control&lt;/li&gt;
-&lt;li&gt;Maintained flag updates (Zero, Negative)&lt;/li&gt;
-&lt;li&gt;Modified ALU decoder for XOR support&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;LDRB (Load Register Byte)&lt;/strong&gt;: Byte-level memory access&lt;/p&gt;</description></item><item><title>MIPS Processor with Extended ISA</title><link>https://will-l10.github.io/blogs/mips-processor/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/mips-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Designed and implemented a complete single-cycle MIPS processor with subroutine support, demonstrating understanding of Load/Store architecture and function call mechanisms.&lt;/p&gt;
-&lt;h2 id="architecture"&gt;Architecture&lt;/h2&gt;
-&lt;h3 id="core-features"&gt;Core Features&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;32 General-Purpose Registers&lt;/strong&gt;: Full MIPS register file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Load/Store Architecture&lt;/strong&gt;: Separate instructions for memory access and computation&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Subroutine Support&lt;/strong&gt;: JAL and JR instructions for function calls&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Harvard Architecture&lt;/strong&gt;: Separate instruction and data memory&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="extended-instructions"&gt;Extended Instructions&lt;/h3&gt;
-&lt;p&gt;Added critical instructions for structured programming:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;JAL (Jump and Link)&lt;/strong&gt;: Save return address and jump to function&lt;/p&gt;</description></item><item><title>GCD Algorithm Hardware Implementation</title><link>https://will-l10.github.io/blogs/gcd-algorithm/</link><pubDate>Sat, 10 Aug 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/gcd-algorithm/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Created general datapath for Greatest Common Divisor algorithm using finite state machine design methodology, demonstrating algorithm-to-hardware translation.&lt;/p&gt;
-&lt;h2 id="algorithm"&gt;Algorithm&lt;/h2&gt;
-&lt;h3 id="euclidean-algorithm"&gt;Euclidean Algorithm&lt;/h3&gt;
-&lt;p&gt;The GCD algorithm uses the principle:&lt;/p&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;GCD(a, b) = GCD(b, a mod b)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Continues until &lt;code&gt;b = 0&lt;/code&gt;, at which point &lt;code&gt;a&lt;/code&gt; is the GCD.&lt;/p&gt;
-&lt;h3 id="example"&gt;Example&lt;/h3&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;GCD(48, 18):
- 48 mod 18 = 12
- 18 mod 12 = 6
- 12 mod 6 = 0
- Result: 6
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id="fsm-design"&gt;FSM Design&lt;/h2&gt;
-&lt;h3 id="state-diagram"&gt;State Diagram&lt;/h3&gt;
-&lt;p&gt;The implementation uses 4 states:&lt;/p&gt;</description></item></channel></rss>
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Feature&lt;/th&gt;
+ &lt;th&gt;Specification&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Algorithm&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Euclidean subtraction method&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Data Width&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;8-bit inputs, 8-bit output&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;FSM-based control unit&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Input Range&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;0-255 (unsigned integers)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Platform&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Clock Speed&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;50 MHz&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Max Latency&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;255 cycles (worst case)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Language&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Verilog HDL&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="algorithm-analysis"&gt;Algorithm Analysis&lt;/h2&gt;
+&lt;h3 id="euclidean-algorithm---subtraction-method"&gt;Euclidean Algorithm - Subtraction Method&lt;/h3&gt;
+&lt;p&gt;The GCD algorithm operates on a simple principle:&lt;/p&gt;</description></item><item><title>Construction &amp; Renovation Portfolio</title><link>https://will-l10.github.io/blogs/construction-portfolio/</link><pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/construction-portfolio/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Since 2019, I&amp;rsquo;ve gained extensive hands-on construction experience through my family&amp;rsquo;s renovation business, developing expertise in &lt;strong&gt;residential electrical installation&lt;/strong&gt;, &lt;strong&gt;hardwood flooring&lt;/strong&gt;, &lt;strong&gt;bathroom remodeling&lt;/strong&gt;, and general construction techniques. This practical experience has honed my problem-solving abilities, attention to detail, and project management skills—all directly applicable to hardware engineering and systems integration.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/construction1.jpg" alt="Construction Project"&gt;&lt;/p&gt;
+&lt;h3 id="core-competencies"&gt;Core Competencies&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Skill Area&lt;/th&gt;
+ &lt;th&gt;Experience Level&lt;/th&gt;
+ &lt;th&gt;Years&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Electrical Installation&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Advanced&lt;/td&gt;
+ &lt;td&gt;6+ years&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Hardwood Flooring&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Expert&lt;/td&gt;
+ &lt;td&gt;6+ years&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Bathroom Remodeling&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Intermediate&lt;/td&gt;
+ &lt;td&gt;5+ years&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Tile Installation&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Intermediate&lt;/td&gt;
+ &lt;td&gt;4+ years&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Drywall &amp;amp; Finishing&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Advanced&lt;/td&gt;
+ &lt;td&gt;5+ years&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Project Management&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Intermediate&lt;/td&gt;
+ &lt;td&gt;6+ years&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="major-projects"&gt;Major Projects&lt;/h2&gt;
+&lt;h3 id="1-complete-home-electrical-rewiring"&gt;1. Complete Home Electrical Rewiring&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; Las Vegas, NV&lt;br&gt;
+&lt;strong&gt;Duration:&lt;/strong&gt; 3 months&lt;br&gt;
+&lt;strong&gt;Role:&lt;/strong&gt; Lead Electrician Assistant&lt;/p&gt;</description></item></channel></rss>

@@ -1,15 +1,110 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MIPS on William Lazcano | Computer &amp; Electrical Engineering</title><link>https://will-l10.github.io/tags/mips/</link><description>Recent content in MIPS on William Lazcano | Computer &amp; Electrical Engineering</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 20 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://will-l10.github.io/tags/mips/index.xml" rel="self" type="application/rss+xml"/><item><title>MIPS Processor with Extended ISA</title><link>https://will-l10.github.io/blogs/mips-processor/</link><pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/mips-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Designed and implemented a complete single-cycle MIPS processor with subroutine support, demonstrating understanding of Load/Store architecture and function call mechanisms.&lt;/p&gt;
-&lt;h2 id="architecture"&gt;Architecture&lt;/h2&gt;
-&lt;h3 id="core-features"&gt;Core Features&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;32 General-Purpose Registers&lt;/strong&gt;: Full MIPS register file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Load/Store Architecture&lt;/strong&gt;: Separate instructions for memory access and computation&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Subroutine Support&lt;/strong&gt;: JAL and JR instructions for function calls&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Harvard Architecture&lt;/strong&gt;: Separate instruction and data memory&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="extended-instructions"&gt;Extended Instructions&lt;/h3&gt;
-&lt;p&gt;Added critical instructions for structured programming:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;JAL (Jump and Link)&lt;/strong&gt;: Save return address and jump to function&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;Designed and implemented a complete &lt;strong&gt;single-cycle MIPS processor&lt;/strong&gt; supporting Load/Store architecture with &lt;strong&gt;32 general-purpose registers&lt;/strong&gt;. Successfully added &lt;strong&gt;JAL (Jump and Link)&lt;/strong&gt; and &lt;strong&gt;JR (Jump Register)&lt;/strong&gt; instructions to enable subroutine calls and returns—essential for structured programming.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/mips.jpg" alt="MIPS Processor Datapath"&gt;&lt;/p&gt;
+&lt;h3 id="project-specifications"&gt;Project Specifications&lt;/h3&gt;
+&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th&gt;Feature&lt;/th&gt;
+ &lt;th&gt;Details&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;32-bit single-cycle MIPS&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Register File&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;32 × 32-bit registers&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Memory Model&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Harvard (separate I/D)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Custom Instructions&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;JAL, JR for subroutines&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Platform&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Clock Speed&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;50 MHz (stable)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Language&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;SystemVerilog&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td&gt;&lt;strong&gt;Display&lt;/strong&gt;&lt;/td&gt;
+ &lt;td&gt;7-segment (PC, instructions, memory ops)&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="architecture-overview"&gt;Architecture Overview&lt;/h2&gt;
+&lt;h3 id="mips-processor-block-diagram"&gt;MIPS Processor Block Diagram&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt; ┌──────────────────────────────────────┐
+ │ MIPS Processor Core │
+ │ │
+ ┌─────────┐ │ ┌──────┐ ┌─────┐ ┌────────┐ │
+ │ Instr │─────▶│ │ PC │───▶│ +4 │───▶│ MUX │ │
+ │ Memory │ │ └──┬───┘ └──┬──┘ └───┬────┘ │
+ └─────────┘ │ │ │ │ │
+ │ │ ┌────▼────┐ │ │
+ │ │ │ Branch │ │ │
+ │ │ │ Target │ │ │
+ │ │ └────┬────┘ │ │
+ │ │ │ │ │
+ │ │ ┌────▼────┐ │ │
+ │ │ │ JAL │ │ │
+ │ │ │ Target │ │ │
+ │ │ └────┬────┘ │ │
+ │ │ │ │ │
+ │ └───────────┴────────────┘ │
+ │ │
+ │ ┌────────────────────────────────┐ │
+ │ │ Instruction Register │ │
+ │ └─────────────┬──────────────────┘ │
+ │ ▼ │
+ │ ┌────────────────────────────────┐ │
+ │ │ Control Unit │ │
+ │ │ • RegDst • MemtoReg │ │
+ │ │ • RegWrite • MemWrite │ │
+ │ │ • ALUSrc • PCSrc │ │
+ │ └─────────────┬──────────────────┘ │
+ │ ▼ │
+ │ ┌────────────────────────────────┐ │
+ │ │ Register File (32 × 32-bit) │ │
+ │ │ │ │
+ │ │ Read Port 1 ─────────────┐ │ │
+ │ │ Read Port 2 ─────────┐ │ │ │
+ │ │ Write Port ($31 for JAL) │ │ │
+ │ └───────────────┬──────┬─────┘ │ │
+ │ │ │ │ │
+ │ ┌─────▼──────▼─────┐ │ │
+ │ │ MUX (ALUSrc) │ │ │
+ │ └─────────┬────────┘ │ │
+ │ ▼ │ │
+ │ ┌─────────────────┐ │ │
+ │ │ ALU (32-bit) │ │ │
+ │ │ • ADD • SUB │ │ │
+ │ │ • AND • OR │ │ │
+ │ │ • SLT • SLL │ │ │
+ │ └────────┬────────┘ │ │
+ │ ▼ │ │
+ ┌─────────┐ │ ┌────────────────┐ │ │
+ │ Data │◀────▶│ │ Data Memory │ │ │
+ │ Memory │ │ │ (1KB) │ │ │
+ └─────────┘ │ └────────┬───────┘ │ │
+ │ ▼ │ │
+ │ ┌────────────────┐ │ │
+ │ │ MUX (MemtoReg)│ │ │
+ │ └────────┬───────┘ │ │
+ │ │ │ │
+ │ └─────────────┘ │
+ └──────────────────────────────────────┘
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="core-features"&gt;Core Features&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Load/Store Architecture:&lt;/strong&gt;&lt;/p&gt;</description></item></channel></rss>
