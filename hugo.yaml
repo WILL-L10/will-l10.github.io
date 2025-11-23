@@ -148,55 +148,16 @@ params:
   # Experience
   experience:
     enable: true
+    # title: "Custom Name"
     items:
-      - job: "Construction & Electrical Specialist"
-        company: "Lazcano Family Construction"
-        companyUrl: "#"
-        date: "Jun 2019 - Present"
-        info:
-          enable: false
+      - job: "Student"
+        company: "UNLV"
+        companyUrl: "https://www.unlv.edu"
+        date: "Jan 2022 - present"
         featuredLink:
           enable: false
-        content: |
-          Hands-on construction experience with family renovation business, specializing in residential electrical installation, hardwood flooring, and complete home renovations.
-
-          - Complete home electrical rewiring and panel upgrades (NEC compliance)
-          - Hardwood floor installation (8,000+ sq ft across 12+ projects)
-          - Bathroom and kitchen renovations with tile work
-          - Project management and client coordination
-          - Quality assurance and city inspection preparation
-
-      - job: "Sales Associate"
-        company: "Target"
-        companyUrl: "https://www.target.com"
-        date: "May 2022 - Aug 2023"
-        info:
-          enable: false
-        featuredLink:
-          enable: false
-        content: |
-          Provided excellent customer service in fast-paced retail environment.
-
-          - Assisted customers with product selection and purchases
-          - Maintained organized and stocked sales floor
-          - Operated point-of-sale systems and handled transactions
-          - Collaborated with team members to meet sales goals
-
-      - job: "Sales Associate"
-        company: "Enchant Christmas"
-        companyUrl: "#"
-        date: "Nov 2021 - Jan 2022"
-        info:
-          enable: false
-        featuredLink:
-          enable: false
-        content: |
-          Seasonal sales position at holiday attraction event.
-
-          - Managed merchandise sales and inventory
-          - Provided customer service to event attendees
-          - Handled cash and credit transactions
-          - Maintained clean and organized retail space
+          url: "https://example.com"
+        content: "I am currently pursuing my Bachelor's degree in Computer Engineering and Electrical Engineering at UNLV."
 
   # Education
   education:
