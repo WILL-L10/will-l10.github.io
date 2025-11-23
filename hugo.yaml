@@ -1,7 +1,7 @@
 baseURL: "https://will-l10.github.io/"
 languageCode: "en-us"
 title: "William Lazcano | Computer & Electrical Engineering"
-theme: "hugo-profile"
+theme: hugo-profile
 
 outputs:
   home:
@@ -12,8 +12,7 @@ outputs:
     - "HTML"
     - "RSS"
 
-pagination:
-  pageSize: 10
+paginate: 3
 enableRobotsTXT: true
 
 markup:
@@ -21,58 +20,92 @@ markup:
     renderer:
       unsafe: true
 
-# Add menu configuration
-menu:
+Menus:
   main:
-    - name: Blog
-      url: /blogs/
+    - identifier: blog
+      name: Blog
+      title: Engineering Projects
+      url: /blogs
       weight: 1
+    - identifier: gallery
+      name: Gallery
+      title: Project Gallery
+      url: /gallery
+      weight: 2
 
 params:
   title: "William Lazcano"
-  description: Computer & Electrical Engineering Student at UNLV
-  favicon: "/images/favicon.png"
+  description: "Computer & Electrical Engineering Student | FPGA Design | Digital Systems"
+  # staticPath: ""  # The path to serve the static files from
+  favicon: "/images/fav.png"
 
+  # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
+  # serving both, only the css, or only the js files through the CDN. Any other value will make so that CDN is not used.
+  # Note the lack of "" in true, it should be of boolean type.
   useBootstrapCDN: false
 
-  # Enable navbar
+  # If you want to load dynamically responsive images from Cloudinary
+  # This requires your images to be uploaded + hosted on Cloudinary
+  # Uncomment and change YOUR_CLOUD_NAME to the Cloud Name in your Cloudinary console
+  # cloudinary_cloud_name: "YOUR_CLOUD_NAME"
+
+  # Whether the fade animations on the home page will be enabled
+  animate: true
+
+  theme:
+    # disableThemeToggle: true
+    # defaultTheme: "light" # dark
+
+  font:
+    fontSize: 1rem # default: 1rem
+    fontWeight: 400 # default: 400
+    lineHeight: 1.5 # default: 1.5
+    textAlign: left # default: left
+
+  # color preference
+  # color:
+  #   textColor:
+  #   secondaryTextColor:
+  #   backgroundColor:
+  #   secondaryBackgroundColor:
+  #   primaryColor:
+  #   secondaryColor:
+
+  #   darkmode:
+  #     textColor:
+  #     secondaryTextColor:
+  #     backgroundColor:
+  #     secondaryBackgroundColor:
+  #     primaryColor:
+  #     secondaryColor:
+
+  # If you want to customize the menu, you can change it here
   navbar:
-    enable: true
-    sticky: true
+    align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
+    # brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
+    # showBrandLogo: false # Show brand logo in nav bar | default is true
+    brandName: "William Lazcano" # Brand name for the brand | default is the title variable
     disableSearch: false
+    # searchPlaceholder: "Search"
     menus:
       disableAbout: false
       disableExperience: false
       disableEducation: false
-      disableProjects: true
-      disableAchievements: false
+      disableProjects: false
+      disableAchievements: true
       disableContact: false
 
-  color:
-    textColor: "#343a40"
-    secondaryTextColor: "#6c757d"
-    backgroundColor: "#eaedf0"
-    secondaryBackgroundColor: "#64ffda1a"
-    primaryColor: "#007bff"
-    secondaryColor: "#f8f9fa"
-
-    darkmode:
-      textColor: "#e4e6eb"
-      secondaryTextColor: "#b0b3b8"
-      backgroundColor: "#18191a"
-      secondaryBackgroundColor: "#212529"
-      primaryColor: "#ffffff"
-      secondaryColor: "#212529"
-
+  # Hero
   hero:
     enable: true
     intro: "Hi, my name is"
-    title: "William Lazcano"
-    subtitle: "I build processors and solve problems"
-    content: "Computer & Electrical Engineering dual major at UNLV with hands-on experience designing custom processors, implementing complex digital systems, and practical construction work. Passionate about hardware design, low-level systems, and creating reliable solutions."
-    image: /images/profile.jpg
+    title: "William Lazcano."
+    subtitle: "I design digital systems and solve complex problems"
+    content: "Computer & Electrical Engineering student passionate about processor design, FPGA development, and hardware-software integration. Bilingual professional with hands-on construction experience."
+    image: /images/hero.svg
     bottomImage:
       enable: true
+    # roundImage: true # Make hero image circular | default false
     button:
       enable: true
       name: "Resume"
@@ -84,144 +117,246 @@ params:
         - icon: fab fa-github
           url: https://github.com/Will-L10
         - icon: fab fa-linkedin
-          url: https://linkedin.com/in/williamlazcano
+          url: https://linkedin.com/in/william-lazcano
+      customIcons:
+        - icon: /images/fav.png
+          url: "https://will-l10.github.io"
 
+  # About
   about:
     enable: true
     title: "About Me"
-    image: "/images/about.jpg"
+    image: "/images/me.png"
     content: |-
-      I'm a Computer & Electrical Engineering dual major at the University of Nevada, Las Vegas, with a passion for hardware design and digital systems. My experience spans from designing custom multicycle processors to hands-on residential construction and renovation work.
+      I'm a Computer & Electrical Engineering dual major at UNLV with a passion for digital systems design and processor architecture. My experience spans from designing custom 8-bit processors to implementing ARM and MIPS architectures on FPGAs.
 
-      When I'm not coding or building circuits, you'll find me snowboarding, at the gym, or spending time with my Australian Shepherd, Luna. I'm native in Spanish and fluent in English, and I bring the same problem-solving mindset from engineering to every project I tackle.
-
-      **Current Focus:** Seeking summer 2025 internships in computer/electrical engineering where I can apply my processor design experience and contribute to real-world hardware/software systems.
+      Beyond academics, I bring 6+ years of hands-on construction experience, including residential electrical installation and renovation work, which has honed my problem-solving abilities and attention to detail.
     skills:
       enable: true
-      title: "Technical Skills:"
+      title: "Here are a few technologies I've been working with:"
       items:
-        - "Hardware Design: Verilog/SystemVerilog, FPGA (Altera DE2-115)"
-        - "Processor Architecture: ARM, MIPS, Custom Multicycle Processors"
-        - "Programming: C++, Data Structures & Algorithms"
-        - "Tools: Quartus II, ModelSim, TimeQuest Timing Analyzer"
-        - "Practical Skills: Electrical Installation, Construction, Problem-Solving"
-        - "Languages: Spanish (Native), English (Fluent)"
+        - "Verilog / SystemVerilog"
+        - "FPGA Development (Quartus II)"
+        - "ARM & MIPS Assembly"
+        - "C/C++ Programming"
+        - "Digital Circuit Design"
+        - "ModelSim Simulation"
+        - "Python"
+        - "Git Version Control"
 
+  # Experience
   experience:
     enable: true
     items:
-      - job: "Residential Construction & Renovation Specialist"
+      - job: "Construction & Electrical Specialist"
         company: "Lazcano Family Construction"
-        companyUrl: ""
-        date: "2019 - Present"
+        companyUrl: "#"
+        date: "Jun 2019 - Present"
+        info:
+          enable: false
+        featuredLink:
+          enable: false
         content: |
-          - Execute complete residential renovations including electrical installation, hardwood flooring, drywall repair, and plumbing fixture setup
-          - Install and wire electrical outlets, switches, and lighting fixtures following NEC standards
-          - Perform precision measurements and problem-solving for custom installations
-          - Collaborate with team to complete projects on schedule while maintaining quality standards
-          - Developed hands-on troubleshooting skills and attention to detail in real-world applications
+          Hands-on construction experience with family renovation business, specializing in residential electrical installation, hardwood flooring, and complete home renovations.
 
-      - job: "Team Member"
+          - Complete home electrical rewiring and panel upgrades (NEC compliance)
+          - Hardwood floor installation (8,000+ sq ft across 12+ projects)
+          - Bathroom and kitchen renovations with tile work
+          - Project management and client coordination
+          - Quality assurance and city inspection preparation
+
+      - job: "Sales Associate"
         company: "Target"
         companyUrl: "https://www.target.com"
-        date: "May 2023 - Present"
+        date: "May 2022 - Aug 2023"
+        info:
+          enable: false
+        featuredLink:
+          enable: false
         content: |
-          - Deliver exceptional customer service in fast-paced retail environment
-          - Collaborate with cross-functional teams to achieve store goals
-          - Demonstrate quick learning and adaptability across multiple departments
-          - Utilize bilingual skills (Spanish/English) to assist diverse customer base
+          Provided excellent customer service in fast-paced retail environment.
 
-      - job: "Ice-Skating Monitor"
-        company: "Enchant"
-        companyUrl: ""
-        date: "November 2021 - January 2022"
+          - Assisted customers with product selection and purchases
+          - Maintained organized and stocked sales floor
+          - Operated point-of-sale systems and handled transactions
+          - Collaborated with team members to meet sales goals
+
+      - job: "Sales Associate"
+        company: "Enchant Christmas"
+        companyUrl: "#"
+        date: "Nov 2021 - Jan 2022"
+        info:
+          enable: false
+        featuredLink:
+          enable: false
         content: |
-          - Monitored guest safety for 50+ simultaneous skaters
-          - Maintained situational awareness and responded to potential emergencies
-          - Provided excellent customer service in high-volume seasonal environment
+          Seasonal sales position at holiday attraction event.
 
+          - Managed merchandise sales and inventory
+          - Provided customer service to event attendees
+          - Handled cash and credit transactions
+          - Maintained clean and organized retail space
+
+  # Education
   education:
     enable: true
+    # title: "Custom Name"
+    index: false
     items:
-      - title: "Bachelor of Science in Computer & Electrical Engineering"
+      - title: "Bachelor of Science in Computer Engineering"
         school:
           name: "University of Nevada, Las Vegas"
           url: "https://www.unlv.edu/"
         date: "2022 - 2026 (Expected)"
+        GPA: "3.5 out of 4.0"
         content: |-
-          **Dual Major:** Computer Engineering & Electrical Engineering
-
           **Relevant Coursework:**
-          - CPE 300L: Digital System Architecture & Design
+          - Digital Systems Design
+          - Computer Architecture
+          - Embedded Systems
           - Data Structures & Algorithms
-          - C++ Programming
-          - Computer Systems & Organization
+          - Circuit Analysis
+          - Signals & Systems
 
-          **Projects:** ARM Processor Implementation, MIPS CPU Design, Custom Multicycle Processor
+          **Activities:**
+          - IEEE Student Member
+          - Engineering Student Organization
+        featuredLink:
+          enable: false
+          name: "My academic record"
+          url: "https://example.com"
 
-      - title: "High School Diploma"
+      - title: "Bachelor of Science in Electrical Engineering"
         school:
-          name: "Doral Academy Red Rock High School"
-          url: ""
-        date: "2018 - 2022"
-        GPA: "3.8"
+          name: "University of Nevada, Las Vegas"
+          url: "https://www.unlv.edu/"
+        date: "2022 - 2026 (Expected)"
+        GPA: "3.5 out of 4.0"
         content: |-
-          - Honors and AP Student
-          - Class of 2022
+          **Dual Major Program** focusing on hardware design and digital systems integration.
 
-  # DISABLED - Original projects section removed
-  projects:
-    enable: false
+          **Key Projects:**
+          - Custom 8-bit Multicycle Processor
+          - ARM Processor with Extended ISA
+          - MIPS Processor Implementation
+          - GCD Algorithm Hardware Accelerator
+        featuredLink:
+          enable: false
+          url: "https://example.com"
 
+  # Achievements
   achievements:
+    enable: false
+    # title: "Custom Name"
+    items:
+      - title: Google kickstart runner
+        content: I solved all problems with optimal solution.
+        url: https://example.com
+        image: /images/achievment.jpg
+
+  # projects
+  projects:
     enable: true
     items:
-      - title: "Custom Processor Design"
-        content: "Designed complete 8-bit processor from scratch with custom ISA capable of matrix operations."
-      
-      - title: "FPGA Deployment"
-        content: "Successfully deployed multiple processor designs on Altera DE2-115 FPGA with real-time debugging."
-      
-      - title: "Bilingual Technical Communication"
-        content: "Native Spanish and fluent English enabling effective collaboration in diverse teams."
-      
-      - title: "Hands-On Problem Solver"
-        content: "6+ years of practical construction experience with electrical systems and precision installations."
+      - title: Custom 8-Bit Multicycle Processor
+        content: Designed complete processor from scratch with 16-instruction ISA, FSM-based control unit, and matrix computation capabilities. Implemented on DE2-115 FPGA.
+        image: /images/projects/processor.jpg
+        featured:
+          name: View Details
+          link: /blogs/custom-processor
+        badges:
+          - "SystemVerilog"
+          - "FPGA"
+          - "FSM Design"
+          - "ISA Design"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
 
-  hobbies:
-    enable: true
-    title: "Beyond Engineering"
-    content: |-
-      When I'm not designing processors or working on construction projects, I enjoy:
-      
-      - 🏂 **Snowboarding** - Hitting the slopes whenever possible
-      - 🏋️ **Fitness** - Regular gym sessions to stay sharp
-      - 🐕 **Luna** - Quality time with my Australian Shepherd
-      - 🎮 **Gaming** - Competitive and strategy games
-      - 🎵 **Music** - Metal and rock while coding
-      - 📺 **Game of Thrones** - Background viewing during work sessions
+      - title: ARM Processor Implementation
+        content: Extended ARM processor with custom EOR and LDRB instructions. Comprehensive datapath and control unit implementation with ModelSim verification.
+        image: /images/projects/arm.jpg
+        featured:
+          name: View Details
+          link: /blogs/arm-processor
+        badges:
+          - "ARM Architecture"
+          - "Verilog"
+          - "FPGA"
+          - "Digital Design"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
 
+      - title: MIPS Processor with Extended ISA
+        content: Single-cycle MIPS processor supporting JAL/JR instructions for subroutine calls. Includes complete register file and ALU implementation.
+        image: /images/projects/mips.jpg
+        featured:
+          name: View Details
+          link: /blogs/mips-processor
+        badges:
+          - "MIPS"
+          - "SystemVerilog"
+          - "Assembly"
+          - "FPGA"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
+
+      - title: GCD Algorithm Hardware Implementation
+        content: Hardware-based Greatest Common Divisor calculator using Euclidean algorithm and FSM design. Optimized for minimal resource utilization.
+        image: /images/projects/gcd.jpg
+        featured:
+          name: View Details
+          link: /blogs/gcd-algorithm
+        badges:
+          - "Verilog"
+          - "FSM"
+          - "Algorithm Design"
+        links:
+          - icon: fab fa-github
+            url: https://github.com/Will-L10
+
+      - title: Construction & Renovation Portfolio
+        content: 6+ years of hands-on experience in residential construction, electrical installation, hardwood flooring, and complete home renovations.
+        image: /images/projects/construction1.jpg
+        featured:
+          name: View Portfolio
+          link: /blogs/construction-portfolio
+        badges:
+          - "Electrical"
+          - "Construction"
+          - "Project Management"
+
+  #Contact
   contact:
     enable: true
-    title: "Get in Touch"
-    content: I'm currently seeking summer 2025 internships in computer/electrical engineering. Feel free to reach out!
-    email: williamgarcia050604@icloud.com
-    btnName: "Email Me"
+    title: "Get In Touch"
+    content: I'm currently looking for summer 2025 internship opportunities in hardware design, FPGA development, or embedded systems. Feel free to reach out!
+    email: garciw8@unlv.nevada.edu
+    btnName: Email Me
+    # formspree:
+    #   enable: true # `contact.email` value will be ignored
+    #   formId: abcdefgh # Take it from your form's endpoint, like 'https://formspree.io/f/abcdefgh'
+    #   emailCaption: "Enter your email address"
+    #   messageCaption: "Enter your message here"
 
   footer:
     recentPosts:
       path: "blogs"
-      count: 5
-      title: Projects
+      count: 3
+      title: Recent Projects
       enable: true
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/Will-L10
-      linkedin: https://linkedin.com/in/williamlazcano
+      linkedin: https://linkedin.com/in/william-lazcano
 
+  # List pages like blogs and posts
   listPages:
     disableFeaturedImage: false
 
+  # Single pages like blog and post
   singlePages:
     readTime:
       enable: true
@@ -229,6 +364,7 @@ params:
     scrollprogress:
       enable: true
 
+  # For translations
   terms:
     read: "Read"
     toc: "Table Of Contents"
