@@ -12,7 +12,8 @@ outputs:
     - "HTML"
     - "RSS"
 
-paginate: 3
+[pagination]
+  pagerSize = 10
 enableRobotsTXT: true
 
 markup:
