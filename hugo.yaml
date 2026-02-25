@@ -117,43 +117,47 @@ params:
   experience:
     enable: true
     items:
-      - job: "Construction & Electrical Specialist"
-        company: "Lazcano Family Construction"
+      - company: "Lazcano Family Construction"
         companyUrl: ""
-        date: "2019 - Present"
-        content: |
-          - Lead residential electrical installations including service panel upgrades, branch circuit replacement, and NEC-compliant GFCI/AFCI protection
-          - Installed 8,000+ sq ft of hardwood flooring across 12+ projects with full subfloor prep, layout planning, and finish work
-          - Completed multiple full bathroom renovations — demolition through finish, including waterproofing, tile, plumbing rough-in, and fixture installation
-          - Developed strong project planning, material estimation, and quality assurance skills across 50+ projects
+        jobs:
+          - name: "Construction & Electrical Specialist"
+            date: "2019 - Present"
+            content: |
+              - Lead residential electrical installations including service panel upgrades, branch circuit replacement, and NEC-compliant GFCI/AFCI protection
+              - Installed 8,000+ sq ft of hardwood flooring across 12+ projects with full subfloor prep, layout planning, and finish work
+              - Completed multiple full bathroom renovations — demolition through finish, including waterproofing, tile, plumbing rough-in, and fixture installation
+              - Developed strong project planning, material estimation, and quality assurance skills across 50+ projects
 
-      - job: "Team Member"
-        company: "Target"
+      - company: "Target"
         companyUrl: "https://www.target.com"
-        date: "May 2023 - Present"
-        content: |
-          - Provide customer service in a high-volume retail environment while supporting cross-functional team goals
-          - Leverage bilingual fluency (Spanish/English) to assist a diverse customer base
-          - Demonstrate adaptability and reliability across multiple departments
+        jobs:
+          - name: "Team Member"
+            date: "May 2023 - Present"
+            content: |
+              - Provide customer service in a high-volume retail environment while supporting cross-functional team goals
+              - Leverage bilingual fluency (Spanish/English) to assist a diverse customer base
+              - Demonstrate adaptability and reliability across multiple departments
 
-      - job: "Lifeguard"
-        company: "MGM Resorts International"
+      - company: "MGM Resorts International"
         companyUrl: "https://www.mgmresorts.com"
-        date: "2020 - 2022"
-        content: |
-          - Monitored pool areas at a high-traffic MGM resort property, ensuring guest safety for hundreds of daily visitors
-          - Responded to emergencies and enforced safety protocols in fast-paced, high-stakes environments
-          - Maintained composure and situational awareness in large-crowd settings
-          - Completed certified lifeguard training and maintained active certification throughout tenure
+        jobs:
+          - name: "Lifeguard"
+            date: "2020 - 2022"
+            content: |
+              - Monitored pool areas at a high-traffic MGM resort property, ensuring guest safety for hundreds of daily visitors
+              - Responded to emergencies and enforced safety protocols in fast-paced, high-stakes environments
+              - Maintained composure and situational awareness in large-crowd settings
+              - Completed certified lifeguard training and maintained active certification throughout tenure
 
-      - job: "Ice-Skating Monitor"
-        company: "Enchant"
+      - company: "Enchant"
         companyUrl: ""
-        date: "November 2021 - January 2022"
-        content: |
-          - Monitored guest safety for 50+ simultaneous skaters during a large-scale seasonal event
-          - Maintained situational awareness and responded quickly to potential hazards
-          - Delivered consistent customer service under high-volume, time-pressured conditions
+        jobs:
+          - name: "Ice-Skating Monitor"
+            date: "November 2021 - January 2022"
+            content: |
+              - Monitored guest safety for 50+ simultaneous skaters during a large-scale seasonal event
+              - Maintained situational awareness and responded quickly to potential hazards
+              - Delivered consistent customer service under high-volume, time-pressured conditions
 
   education:
     enable: true
