@@ -1,41 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Processor Design on William Lazcano | Computer &amp; Electrical Engineering</title><link>https://will-l10.github.io/tags/processor-design/</link><description>Recent content in Processor Design on William Lazcano | Computer &amp; Electrical Engineering</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 16 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://will-l10.github.io/tags/processor-design/index.xml" rel="self" type="application/rss+xml"/><item><title>Custom 8-Bit Multicycle Processor</title><link>https://will-l10.github.io/blogs/custom-processor/</link><pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate><guid>https://will-l10.github.io/blogs/custom-processor/</guid><description>&lt;h2 id="project-overview"&gt;Project Overview&lt;/h2&gt;
-&lt;p&gt;Designed and implemented a &lt;strong&gt;complete custom 8-bit multicycle processor&lt;/strong&gt; from the ground up, featuring a 16-instruction ISA and FSM-based control unit. This processor successfully executes complex matrix operations entirely in software using integer arithmetic.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://will-l10.github.io/images/projects/processor.jpg" alt="Processor Block Diagram"&gt;&lt;/p&gt;
-&lt;h3 id="key-specifications"&gt;Key Specifications&lt;/h3&gt;
-&lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;Feature&lt;/th&gt;
- &lt;th&gt;Specification&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;Architecture&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;8-bit multicycle&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;Instruction Set&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;16 custom instructions&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;Memory&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;512 bytes unified (byte-addressable)&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;Execution Cycles&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;1-4 cycles per instruction&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;Control Logic&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;FSM-based with 6 states&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;strong&gt;Target Platform&lt;/strong&gt;&lt;/td&gt;
- &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id="architecture-deep-dive"&gt;Architecture Deep Dive&lt;/h2&gt;
-&lt;h3 id="instruction-set-architecture"&gt;Instruction Set Architecture&lt;/h3&gt;
-&lt;p&gt;The processor implements 16 carefully designed instructions:&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Processor Design on William Lazcano | Computer &amp; Electrical Engineering</title>
+    <link>http://localhost:1313/tags/processor-design/</link>
+    <description>Recent content in Processor Design on William Lazcano | Computer &amp; Electrical Engineering</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/processor-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Custom 8-Bit Multicycle Processor</title>
+      <link>http://localhost:1313/blogs/custom-processor/</link>
+      <pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blogs/custom-processor/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;This was the most ambitious project I&amp;rsquo;ve tackled so far: designing a working processor entirely from scratch. No starter code, no skeleton files — just a blank canvas, a specification, and SystemVerilog.&lt;/p&gt;&#xA;&lt;p&gt;The result is a fully functional 8-bit multicycle CPU with a custom 16-instruction ISA, FSM-based control unit, and real deployment on an Altera DE2-115 FPGA. It successfully executes matrix operations in software using only integer arithmetic.&lt;/p&gt;&#xA;&lt;h3 id=&#34;specs-at-a-glance&#34;&gt;Specs at a Glance&lt;/h3&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Feature&lt;/th&gt;&#xA;          &lt;th&gt;Detail&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Architecture&lt;/td&gt;&#xA;          &lt;td&gt;8-bit multicycle&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Instruction Set&lt;/td&gt;&#xA;          &lt;td&gt;16 custom instructions&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Memory&lt;/td&gt;&#xA;          &lt;td&gt;512 bytes, byte-addressable&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Cycles per Instruction&lt;/td&gt;&#xA;          &lt;td&gt;1–4 depending on instruction type&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Control Logic&lt;/td&gt;&#xA;          &lt;td&gt;FSM with 6 states&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Target Platform&lt;/td&gt;&#xA;          &lt;td&gt;Altera DE2-115 FPGA&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;Language&lt;/td&gt;&#xA;          &lt;td&gt;SystemVerilog&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;instruction-set-architecture&#34;&gt;Instruction Set Architecture&lt;/h2&gt;&#xA;&lt;p&gt;I designed all 16 instructions myself, grouped into four categories:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

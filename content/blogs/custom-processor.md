@@ -7,119 +7,64 @@ tags:
   - SystemVerilog
   - FPGA
   - Processor Design
-  - Digital Systems
   - FSM
+  - Digital Systems
 image: /images/projects/processor.jpg
-description: "Custom 8-bit processor from scratch with 16-instruction ISA and FSM-based control unit"
+description: "Designed a complete 8-bit multicycle processor from scratch — custom ISA, FSM control unit, and full FPGA deployment on the Altera DE2-115."
 toc: true
 ---
 
-## Project Overview
+## Overview
 
-Designed and implemented a **complete custom 8-bit multicycle processor** from the ground up, featuring a 16-instruction ISA and FSM-based control unit. This processor successfully executes complex matrix operations entirely in software using integer arithmetic.
+This was the most ambitious project I've tackled so far: designing a working processor entirely from scratch. No starter code, no skeleton files — just a blank canvas, a specification, and SystemVerilog.
 
-![Processor Block Diagram](/images/projects/processor.jpg)
+The result is a fully functional 8-bit multicycle CPU with a custom 16-instruction ISA, FSM-based control unit, and real deployment on an Altera DE2-115 FPGA. It successfully executes matrix operations in software using only integer arithmetic.
 
-### Key Specifications
+### Specs at a Glance
 
-| Feature | Specification |
-|---------|--------------|
-| **Architecture** | 8-bit multicycle |
-| **Instruction Set** | 16 custom instructions |
-| **Memory** | 512 bytes unified (byte-addressable) |
-| **Execution Cycles** | 1-4 cycles per instruction |
-| **Control Logic** | FSM-based with 6 states |
-| **Target Platform** | Altera DE2-115 FPGA |
+| Feature | Detail |
+|---|---|
+| Architecture | 8-bit multicycle |
+| Instruction Set | 16 custom instructions |
+| Memory | 512 bytes, byte-addressable |
+| Cycles per Instruction | 1–4 depending on instruction type |
+| Control Logic | FSM with 6 states |
+| Target Platform | Altera DE2-115 FPGA |
+| Language | SystemVerilog |
 
-## Architecture Deep Dive
+---
 
-### Instruction Set Architecture
+## Instruction Set Architecture
 
-The processor implements 16 carefully designed instructions:
+I designed all 16 instructions myself, grouped into four categories:
 
-#### Arithmetic Operations
+**Arithmetic:** `ADD`, `SUB`, `MULT`, `DIV`, `INAC` (increment accumulator)
+
+**Logic:** `AND`, `OR`, `XOR`, `NOT`, `CLAC` (clear accumulator)
+
+**Control Flow:** `JUMP`, `JMPZ` (jump if zero), `JPNZ` (jump if not zero)
+
+**Data Movement:** `LDAC`, `STAC`, `MVAC`, `MOVR`
+
+The architecture uses an accumulator model — most operations read from and write back to the accumulator (AC), which keeps the datapath simple and the control logic clean.
+
+---
+
+## FSM Control Unit
+
+The control unit is a 6-state FSM that drives all control signals based on the current instruction and processor state.
+
 ```
-ADD   - Addition
-SUB   - Subtraction  
-MULT  - Multiplication
-DIV   - Division
-INAC  - Increment Accumulator
-```
-
-#### Logic Operations
-```
-AND   - Bitwise AND
-OR    - Bitwise OR
-XOR   - Bitwise XOR
-NOT   - Bitwise NOT
-CLAC  - Clear Accumulator
-```
-
-#### Control Flow
-```
-JUMP  - Unconditional jump
-JMPZ  - Jump if zero
-JPNZ  - Jump if not zero
-```
-
-#### Data Movement
-```
-LDAC  - Load to Accumulator
-STAC  - Store from Accumulator
-MVAC  - Move to Accumulator
-MOVR  - Move to R register
+FETCH_STATE → NORMAL_STATE
+                 │
+          ┌──────┼──────────────┐
+          ▼      ▼              ▼
+   LOAD_ADDRESS1  LOAD_STORE   JUMP_STATE
+          │
+          ▼
+   LOAD_ADDRESS2
 ```
 
-### Finite State Machine Design
-
-The control unit operates through 6 distinct states:
-```
-┌─────────────┐
-│ FETCH_STATE │
-└──────┬──────┘
-       │
-       ▼
-┌──────────────┐
-│ NORMAL_STATE │─────┐
-└──────┬───────┘     │
-       │             │
-       ├─────────────┼──────────┐
-       │             │          │
-       ▼             ▼          ▼
-┌──────────────┐ ┌──────────┐ ┌────────────┐
-│LOAD_ADDRESS1 │ │LOAD_STORE│ │ JUMP_STATE │
-└──────┬───────┘ └──────────┘ └────────────┘
-       │
-       ▼
-┌──────────────┐
-│LOAD_ADDRESS2 │
-└──────────────┘
-```
-
-### Datapath Components
-
-The processor's datapath consists of 11 major components:
-
-**Registers:**
-- **PC** (16-bit): Program Counter
-- **IR** (8-bit): Instruction Register
-- **AC** (8-bit): Accumulator
-- **R** (8-bit): General Purpose Register
-- **MDA** (16-bit): Memory Data Address Register
-
-**Computational Units:**
-- **ALU** (8-bit): Arithmetic Logic Unit
-- **FF** (1-bit): Zero Flag
-
-**Control Elements:**
-- **PC Multiplexers** (2x 16-bit): Control program flow
-- **AC Multiplexers** (3x 8-bit): Manage accumulator input
-- **16-bit Adder**: PC increment
-- **Instruction Multiplexer**: Select instruction source
-
-## Implementation Details
-
-### Control Unit Code
 ```systemverilog
 module controller(
     input logic clk, reset, prog_mode,
@@ -130,42 +75,35 @@ module controller(
     output logic IRwrite, Rwrite, ACwrite, PCenable, MemWrite,
     output logic PCmuxSel, intr_source, address_mux_sel
 );
-    
+
     typedef enum {
-        fetch_state, 
-        normal_state, 
-        load_address1, 
-        load_address2, 
-        jump_state, 
-        load_store
+        fetch_state, normal_state,
+        load_address1, load_address2,
+        jump_state, load_store
     } FSM_states;
-    
+
     FSM_states state, nextstate;
     reg Z;
-    
+
     always@(posedge clk) begin
         if (reset || prog_mode)
             state <= fetch_state;
         else begin
             state <= nextstate;
-            if(op_code[3])
-                Z <= FF;
+            if(op_code[3]) Z <= FF;
         end
     end
-    
-    // State transition and control signal logic
+
     always@(*) begin
         case(state)
-            fetch_state: 
+            fetch_state:
                 nextstate <= normal_state;
-            
+
             normal_state: begin
-                if(op_code[3]) // ALU instruction
+                if(op_code[3])
                     nextstate <= fetch_state;
-                else if (op_code[3:0] == 4'b0001 || 
-                         op_code[3:0] == 4'b0010 || 
-                         op_code[3:0] == 4'b0101 || 
-                         op_code[3:0] == 4'b0110 || 
+                else if (op_code[3:0] == 4'b0001 || op_code[3:0] == 4'b0010 ||
+                         op_code[3:0] == 4'b0101 || op_code[3:0] == 4'b0110 ||
                          op_code[3:0] == 4'b0111)
                     nextstate <= load_address1;
                 else if (op_code[4])
@@ -173,29 +111,25 @@ module controller(
                 else
                     nextstate <= fetch_state;
             end
-            
-            load_address1: 
-                nextstate <= load_address2;
-            
-            load_address2: 
-                nextstate <= (op_code[3:0] == 4'b0001 || 
-                             op_code[3:0] == 4'b0010) ? 
-                             load_store : jump_state;
-            
-            jump_state: 
-                nextstate <= fetch_state;
-            
-            load_store: 
-                nextstate <= fetch_state;
-            
-            default: 
-                nextstate <= fetch_state;
+
+            load_address1: nextstate <= load_address2;
+            load_address2: nextstate <= (op_code[3:0] == 4'b0001 ||
+                                         op_code[3:0] == 4'b0010) ?
+                                         load_store : jump_state;
+            jump_state:    nextstate <= fetch_state;
+            load_store:    nextstate <= fetch_state;
+            default:       nextstate <= fetch_state;
         endcase
     end
 endmodule
 ```
 
-### ALU Implementation
+---
+
+## ALU
+
+The ALU supports 8 operations selected by a 3-bit control signal and outputs a zero flag used by conditional jumps.
+
 ```systemverilog
 module alu(
     input logic [7:0] a, b,
@@ -203,35 +137,33 @@ module alu(
     output logic [7:0] result,
     output logic zero_flag
 );
-    
     always_comb begin
         case(alu_control)
-            3'b000: result = a + b;      // ADD
-            3'b001: result = a - b;      // SUB
-            3'b010: result = a + 1;      // INAC
-            3'b011: result = 8'b0;       // CLAC
-            3'b100: result = a & b;      // AND
-            3'b101: result = a * b;      // MULT
-            3'b110: result = a / b;      // DIV
-            3'b111: result = ~a;         // NOT
+            3'b000: result = a + b;
+            3'b001: result = a - b;
+            3'b010: result = a + 1;   // INAC
+            3'b011: result = 8'b0;    // CLAC
+            3'b100: result = a & b;
+            3'b101: result = a * b;
+            3'b110: result = a / b;
+            3'b111: result = ~a;
             default: result = 8'b0;
         endcase
-        
         zero_flag = (result == 8'b0);
     end
 endmodule
 ```
 
-## Matrix Operations Demo
+---
 
-### Test Program: 2×2 Matrix Operations
+## Matrix Operations
 
-The processor executes complex matrix algorithms entirely in software:
+To prove the processor actually works, I wrote a test program that performs 2×2 matrix addition, multiplication, and inversion entirely in software.
 
 **Matrix Addition:**
 ```
-A = | 6  5 |    B = | 1  2 |    C = | 7  7  |
-    | 8  7 |        | 3  4 |        | 11 11 |
+A = | 6  5 |    B = | 1  2 |    C = | 7   7  |
+    | 8  7 |        | 3  4 |        | 11  11 |
 ```
 
 **Matrix Multiplication:**
@@ -240,130 +172,60 @@ A × B = | 21  32 |
         | 29  44 |
 ```
 
-**Matrix Inversion** (using integer arithmetic):
-```
-A⁻¹ = | det(A)⁻¹ × d   -det(A)⁻¹ × b |
-      | -det(A)⁻¹ × c   det(A)⁻¹ × a |
+Since the processor has no floating-point support, matrix inversion uses fixed-point scaled integers — a deliberate design choice to demonstrate that complex algorithms are achievable in constrained hardware.
 
-Where det(A) = ad - bc
-```
+### Performance
 
-### Performance Metrics
-
-| Operation | Clock Cycles | Execution Time @ 50MHz |
-|-----------|-------------|----------------------|
+| Operation | Clock Cycles | Time @ 50 MHz |
+|---|---|---|
 | Matrix Add (2×2) | ~120 | 2.4 μs |
 | Matrix Multiply (2×2) | ~350 | 7.0 μs |
 | Matrix Inversion (2×2) | ~500 | 10.0 μs |
 
+---
+
 ## FPGA Deployment
 
-### Hardware Features
+Programming the processor onto real hardware added a layer of complexity beyond simulation. The DE2-115 board gives you 9 switches for address control, 8 for data, red LEDs for feedback, and 8 seven-segment displays showing the PC, opcode, and accumulator in real time.
 
-**Programming Mode:**
-- 9 switches control 512-byte address space
-- 8 switches set data value
-- Red LEDs reflect current switch settings
-- Manual memory programming via switches
-
-**Display Output:**
-- 8 seven-segment displays
-- Real-time PC, opcode, and accumulator display
-- Matrix C results (address 0x1EF+) shown live
-- Two segments per byte
-
-### Resource Utilization
 ```
-┌─────────────────────┬──────────┬──────────┐
-│ Resource            │ Used     │ Available│
-├─────────────────────┼──────────┼──────────┤
-│ Logic Elements      │ 4,302    │ 114,480  │
-│ Dedicated Registers │ 4,171    │ 114,480  │
-│ Memory Bits         │ 4,096    │ 3,981,312│
-│ Multipliers (9-bit) │ 0        │ 532      │
-└─────────────────────┴──────────┴──────────┘
+Resource             Used     Available
+Logic Elements       4,302    114,480
+Dedicated Registers  4,171    114,480
+Memory Bits          4,096    3,981,312
 Utilization: ~3.8%
 ```
 
-## Testing & Verification
+---
 
-### ModelSim Simulation
+## Verification
 
-Comprehensive testing validated all 16 instructions:
+Every instruction was verified in ModelSim before touching the FPGA. Waveform analysis confirmed correct state transitions, control signal generation, and memory operations across all test cases.
+
 ```
-✓ Test 1: ADD operation - PASSED
-✓ Test 2: SUB operation - PASSED
-✓ Test 3: MULT operation - PASSED
-✓ Test 4: DIV operation - PASSED
-✓ Test 5: Matrix addition (2×2) - PASSED
-✓ Test 6: Matrix multiplication (2×2) - PASSED
-✓ Test 7: Conditional jumps (JMPZ/JPNZ) - PASSED
-✓ Test 8: Memory load/store - PASSED
+✓ ADD / SUB / MULT / DIV
+✓ Matrix addition (2×2)
+✓ Matrix multiplication (2×2)
+✓ JMPZ / JPNZ conditional branching
+✓ LDAC / STAC memory operations
 ```
-
-### Waveform Analysis
-
-All instructions verified through detailed waveform inspection in ModelSim, confirming correct:
-- State transitions
-- Control signal generation
-- Data path operations
-- Memory accesses
-
-## Challenges & Solutions
-
-### Challenge 1: Integer Matrix Inversion
-
-**Problem:** No floating-point support for fractional results
-
-**Solution:** Implemented fixed-point arithmetic using scaled integers with careful overflow management. All intermediate calculations use scaled values to maintain precision.
-
-### Challenge 2: Limited Memory (512 bytes)
-
-**Problem:** Constrained space for program and data
-
-**Solution:** Optimized instruction encoding to 1-3 bytes per instruction. Used accumulator architecture to minimize register file size.
-
-### Challenge 3: Debugging Complexity
-
-**Problem:** Difficult to observe internal processor state
-
-**Solution:** Implemented comprehensive 7-segment display showing PC, opcode, accumulator, and pause-on-write functionality for step-through debugging.
-
-## Skills Demonstrated
-
-- ✅ Digital system architecture from scratch
-- ✅ FSM design and implementation
-- ✅ SystemVerilog HDL programming
-- ✅ FPGA synthesis and deployment
-- ✅ Algorithm optimization for constrained hardware
-- ✅ Hardware debugging techniques
-- ✅ Instruction set architecture design
-- ✅ Control unit and datapath coordination
-
-## Future Enhancements
-
-**Performance:**
-- Pipeline implementation for higher throughput
-- Cache memory system
-- Hardware multiply/divide units
-
-**Features:**
-- Interrupt handling
-- Extended 16-bit operations
-- Floating-point support
-- UART peripheral interface
-- Expanded memory addressing
-
-## Conclusion
-
-This project demonstrates a fully functional minimal processor architecture suitable for educational use and embedded applications. Despite its simplicity, the SMM processor successfully executes meaningful computation through software routines, showcasing how general-purpose computation emerges from a simple FSM-based CPU design.
-
-The combination of custom ISA design, FSM-based control, and practical FPGA deployment provides hands-on insight into fundamental computer architecture principles—all implemented without the complexity of modern CPU features.
 
 ---
 
-**Project Files:** [GitHub Repository](https://github.com/Will-L10)
+## Challenges
 
-**Demo Video:** Available upon request
+**Integer matrix inversion** — no floating-point meant I had to implement fixed-point arithmetic with careful overflow management. It forced me to really understand how numerical precision works at the hardware level.
 
-**Documentation:** Complete technical specifications in project report
+**512-byte memory constraint** — every byte mattered. I optimized instruction encoding aggressively to fit both the program and data in the same address space.
+
+**Hardware debugging** — watching a processor fail silently on an FPGA is very different from a simulation. I built step-through debugging into the display output so I could pause execution and inspect state at each cycle.
+
+---
+
+## What I Learned
+
+Building a processor from scratch makes every other digital design project easier. You stop thinking about components in isolation and start seeing the full picture — how control signals propagate, how datapaths interact, why timing matters. This project is the foundation everything else in my portfolio builds on.
+
+---
+
+**Code:** [GitHub](https://github.com/Will-L10)

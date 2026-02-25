@@ -21,7 +21,6 @@ markup:
     renderer:
       unsafe: true
 
-# Add menu configuration
 menu:
   main:
     - name: Blog
@@ -35,7 +34,6 @@ params:
 
   useBootstrapCDN: false
 
-  # Enable navbar
   navbar:
     enable: true
     sticky: true
@@ -66,10 +64,10 @@ params:
 
   hero:
     enable: true
-    intro: "Hi, my name is"
+    intro: "Hi, I'm"
     title: "William Lazcano"
-    subtitle: "I build processors and solve problems"
-    content: "Computer & Electrical Engineering dual major at UNLV with hands-on experience designing custom processors, implementing complex digital systems, and practical construction work. Passionate about hardware design, low-level systems, and creating reliable solutions."
+    subtitle: "I design processors from scratch and build things that last"
+    content: "Computer & Electrical Engineering dual major at UNLV. I design custom processors in SystemVerilog, deploy them on real FPGA hardware, and bring the same precision and hands-on mindset from 6+ years of construction work. I'm looking for an engineering internship where I can contribute from day one."
     image: /images/profile.jpg
     bottomImage:
       enable: true
@@ -91,54 +89,65 @@ params:
     title: "About Me"
     image: "/images/about.jpg"
     content: |-
-      I'm a Computer & Electrical Engineering dual major at the University of Nevada, Las Vegas, with a passion for hardware design and digital systems. My experience spans from designing custom multicycle processors to hands-on residential construction and renovation work.
+      I'm a Computer & Electrical Engineering dual major at UNLV with a deep interest in how hardware actually works — not just in simulation, but on real silicon. I've designed and deployed custom processors on FPGA, built FSM-based control units from the ground up, and written SystemVerilog that runs on physical hardware at 50 MHz.
 
-      When I'm not coding or building circuits, you'll find me snowboarding, at the gym, or spending time with my Australian Shepherd, Luna. I'm native in Spanish and fluent in English, and I bring the same problem-solving mindset from engineering to every project I tackle.
+      Outside of circuits and code, I've spent 6+ years doing residential construction with my family — electrical wiring, hardwood floors, full bathroom renovations. That background has given me a problem-solving instinct and attention to detail that I bring into every engineering project.
 
-      **Current Focus:** Seeking summer 2025 internships in computer/electrical engineering where I can apply my processor design experience and contribute to real-world hardware/software systems.
+      When I'm not in the lab or on a job site, I'm snowboarding, at the gym, or hanging out with my Australian Shepherd, Luna. I'm a native Spanish speaker and fluent in English.
+
+      **Currently seeking:** Summer 2026 internships in hardware design, embedded systems, or electrical engineering.
     skills:
       enable: true
       title: "Technical Skills:"
       items:
-        - "Hardware Design: Verilog/SystemVerilog, FPGA (Altera DE2-115)"
-        - "Processor Architecture: ARM, MIPS, Custom Multicycle Processors"
-        - "Programming: C++, Data Structures & Algorithms"
-        - "Tools: Quartus II, ModelSim, TimeQuest Timing Analyzer"
-        - "Practical Skills: Electrical Installation, Construction, Problem-Solving"
+        - "HDL: SystemVerilog, Verilog"
+        - "Processor Architecture: Custom ISA, ARM, MIPS, Multicycle & Single-Cycle"
+        - "FPGA: Altera DE2-115, Quartus II, TimeQuest Timing Analyzer"
+        - "Simulation: ModelSim, waveform analysis, testbench design"
+        - "Programming: C++, data structures, algorithms"
+        - "Electrical: NEC-compliant wiring, circuit analysis, load calculations"
         - "Languages: Spanish (Native), English (Fluent)"
 
   experience:
     enable: true
     items:
-      - job: "Residential Construction & Renovation Specialist"
+      - job: "Construction & Electrical Specialist"
         company: "Lazcano Family Construction"
         companyUrl: ""
         date: "2019 - Present"
         content: |
-          - Execute complete residential renovations including electrical installation, hardwood flooring, drywall repair, and plumbing fixture setup
-          - Install and wire electrical outlets, switches, and lighting fixtures following NEC standards
-          - Perform precision measurements and problem-solving for custom installations
-          - Collaborate with team to complete projects on schedule while maintaining quality standards
-          - Developed hands-on troubleshooting skills and attention to detail in real-world applications
+          - Lead residential electrical installations including service panel upgrades, branch circuit replacement, and NEC-compliant GFCI/AFCI protection
+          - Installed 8,000+ sq ft of hardwood flooring across 12+ projects with full subfloor prep, layout planning, and finish work
+          - Completed multiple full bathroom renovations — demolition through finish, including waterproofing, tile, plumbing rough-in, and fixture installation
+          - Developed strong project planning, material estimation, and quality assurance skills across 50+ projects
 
       - job: "Team Member"
         company: "Target"
         companyUrl: "https://www.target.com"
         date: "May 2023 - Present"
         content: |
-          - Deliver exceptional customer service in fast-paced retail environment
-          - Collaborate with cross-functional teams to achieve store goals
-          - Demonstrate quick learning and adaptability across multiple departments
-          - Utilize bilingual skills (Spanish/English) to assist diverse customer base
+          - Provide customer service in a high-volume retail environment while supporting cross-functional team goals
+          - Leverage bilingual fluency (Spanish/English) to assist a diverse customer base
+          - Demonstrate adaptability and reliability across multiple departments
+
+      - job: "Lifeguard"
+        company: "MGM Resorts International"
+        companyUrl: "https://www.mgmresorts.com"
+        date: "2020 - 2022"
+        content: |
+          - Monitored pool areas at a high-traffic MGM resort property, ensuring guest safety for hundreds of daily visitors
+          - Responded to emergencies and enforced safety protocols in fast-paced, high-stakes environments
+          - Maintained composure and situational awareness in large-crowd settings
+          - Completed certified lifeguard training and maintained active certification throughout tenure
 
       - job: "Ice-Skating Monitor"
         company: "Enchant"
         companyUrl: ""
         date: "November 2021 - January 2022"
         content: |
-          - Monitored guest safety for 50+ simultaneous skaters
-          - Maintained situational awareness and responded to potential emergencies
-          - Provided excellent customer service in high-volume seasonal environment
+          - Monitored guest safety for 50+ simultaneous skaters during a large-scale seasonal event
+          - Maintained situational awareness and responded quickly to potential hazards
+          - Delivered consistent customer service under high-volume, time-pressured conditions
 
   education:
     enable: true
@@ -147,7 +156,7 @@ params:
         school:
           name: "University of Nevada, Las Vegas"
           url: "https://www.unlv.edu/"
-        date: "2022 - 2026 (Expected)"
+        date: "2022 - 2028 (Expected)"
         content: |-
           **Dual Major:** Computer Engineering & Electrical Engineering
 
@@ -156,8 +165,9 @@ params:
           - Data Structures & Algorithms
           - C++ Programming
           - Computer Systems & Organization
+          - Circuit Analysis
 
-          **Projects:** ARM Processor Implementation, MIPS CPU Design, Custom Multicycle Processor
+          **Projects:** Custom 8-bit Multicycle Processor, ARM Processor with Extended ISA, MIPS Processor with Subroutine Support, GCD Hardware Implementation
 
       - title: "High School Diploma"
         school:
@@ -166,45 +176,31 @@ params:
         date: "2018 - 2022"
         GPA: "3.8"
         content: |-
-          - Honors and AP Student
+          - Honors and AP coursework
           - Class of 2022
 
-  # DISABLED - Original projects section removed
   projects:
     enable: false
 
   achievements:
     enable: true
     items:
-      - title: "Custom Processor Design"
-        content: "Designed complete 8-bit processor from scratch with custom ISA capable of matrix operations."
-      
-      - title: "FPGA Deployment"
-        content: "Successfully deployed multiple processor designs on Altera DE2-115 FPGA with real-time debugging."
-      
-      - title: "Bilingual Technical Communication"
-        content: "Native Spanish and fluent English enabling effective collaboration in diverse teams."
-      
-      - title: "Hands-On Problem Solver"
-        content: "6+ years of practical construction experience with electrical systems and precision installations."
+      - title: "Custom Processor Built from Scratch"
+        content: "Designed a complete 8-bit multicycle processor with a custom 16-instruction ISA, FSM-based control unit, and full FPGA deployment — no starter code, no shortcuts."
 
-  hobbies:
-    enable: true
-    title: "Beyond Engineering"
-    content: |-
-      When I'm not designing processors or working on construction projects, I enjoy:
-      
-      - 🏂 **Snowboarding** - Hitting the slopes whenever possible
-      - 🏋️ **Fitness** - Regular gym sessions to stay sharp
-      - 🐕 **Luna** - Quality time with my Australian Shepherd
-      - 🎮 **Gaming** - Competitive and strategy games
-      - 🎵 **Music** - Metal and rock while coding
-      - 📺 **Game of Thrones** - Background viewing during work sessions
+      - title: "Multi-Architecture FPGA Experience"
+        content: "Implemented ARM and MIPS processors with extended instruction sets on real FPGA hardware, verified with ModelSim and analyzed with TimeQuest timing tools."
+
+      - title: "6+ Years of Hands-On Electrical Work"
+        content: "NEC-compliant residential electrical installations across dozens of projects — the kind of real-world experience most engineering students don't have."
+
+      - title: "Bilingual Technical Communicator"
+        content: "Native Spanish speaker, fluent in English. Comfortable working in diverse teams and communicating technical concepts clearly across language barriers."
 
   contact:
     enable: true
     title: "Get in Touch"
-    content: I'm currently seeking summer 2025 internships in computer/electrical engineering. Feel free to reach out!
+    content: I'm actively looking for Summer 2026 engineering internships in hardware design, embedded systems, or electrical engineering. If you think I'd be a good fit for your team, I'd love to connect.
     email: williamgarcia050604@icloud.com
     btnName: "Email Me"
 
