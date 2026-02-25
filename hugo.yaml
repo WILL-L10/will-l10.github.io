@@ -180,7 +180,6 @@ params:
           name: "Doral Academy Red Rock High School"
           url: ""
         date: "2018 - 2022"
-        GPA: "3.8"
         content: |-
           - Honors and AP coursework
           - Class of 2022
@@ -207,7 +206,7 @@ params:
     enable: true
     title: "Get in Touch"
     content: I'm actively looking for Summer 2026 engineering internships in hardware design, embedded systems, or electrical engineering. If you think I'd be a good fit for your team, I'd love to connect.
-    email: williamgarcia050604@icloud.com
+    email: garciw8@unlv.nevada.edu
     btnName: "Email Me"
 
   footer:
