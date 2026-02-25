@@ -73,8 +73,14 @@ params:
       enable: true
     button:
       enable: true
-      name: "Resume"
-      url: "#"
+      name: "CPE Resume"
+      url: "/resume_cpe.pdf"
+      download: true
+      newPage: false
+    button2:
+      enable: true
+      name: "EE Resume"
+      url: "/resume_ee.pdf"
       download: true
       newPage: false
     socialLinks:
