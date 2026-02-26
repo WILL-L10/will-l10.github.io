@@ -88,7 +88,7 @@ params:
         - icon: fab fa-github
           url: https://github.com/Will-L10
         - icon: fab fa-linkedin
-          url: https://linkedin.com/in/williamlazcano
+          url: https://www.linkedin.com/in/william-lazcano-garcia-84b5313b3/
 
   about:
     enable: true
@@ -222,7 +222,7 @@ params:
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/Will-L10
-      linkedin: https://linkedin.com/in/williamlazcano
+      linkedin: https://www.linkedin.com/in/william-lazcano-garcia-84b5313b3/
 
   listPages:
     disableFeaturedImage: false
