@@ -2,6 +2,7 @@ baseURL: "https://will-l10.github.io/"
 languageCode: "en-us"
 title: "William Lazcano | Computer & Electrical Engineering"
 theme: "hugo-profile"
+googleAnalytics: "G-PHJQPKKS3F"
 
 outputs:
   home:
