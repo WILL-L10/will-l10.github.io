@@ -111,7 +111,8 @@ params:
         - "Processor Architecture: Custom ISA, ARM, MIPS, Multicycle & Single-Cycle"
         - "FPGA: Altera DE2-115, Quartus II, TimeQuest Timing Analyzer"
         - "Simulation: ModelSim, waveform analysis, testbench design"
-        - "Programming: C++, data structures, algorithms"
+        - "RF & SDR: RTL-SDR, ADS-B / Mode S decoding, spectrum analysis"
+        - "Programming: C++, Python (pandas, folium), data structures, algorithms"
         - "Electrical: NEC-compliant wiring, circuit analysis, load calculations"
         - "Languages: Spanish (Native), English (Fluent)"
 
@@ -178,7 +179,7 @@ params:
           - Computer Systems & Organization
           - Circuit Analysis
 
-          **Projects:** Custom 8-bit Multicycle Processor, ARM Processor with Extended ISA, MIPS Processor with Subroutine Support, GCD Hardware Implementation
+          **Projects:** Real-Time ADS-B Aircraft Tracker (RTL-SDR), Custom 8-bit Multicycle Processor, ARM Processor with Extended ISA, MIPS Processor with Subroutine Support, GCD Hardware Implementation
 
       - title: "High School Diploma"
         school:
@@ -217,7 +218,7 @@ params:
   footer:
     recentPosts:
       path: "blogs"
-      count: 5
+      count: 8
       title: Projects
       enable: true
       disableFeaturedImage: false
