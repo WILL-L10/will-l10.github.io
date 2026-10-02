@@ -12,7 +12,7 @@ image: /images/projects/mips-wave.jpg
 description: "Single-cycle MIPS processor extended with JAL and JR instructions to enable full subroutine call and return support."
 toc: true
 weight: 4
-category: "Computer Architecture"
+category: "Computer architecture"
 summary: "Added JAL and JR to a single-cycle MIPS CPU so it can call and return from subroutines, proven with an assembly test program."
 ---
 

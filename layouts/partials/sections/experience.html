@@ -1,0 +1,21 @@
+{{ if .Site.Params.experience.enable | default false }}
+<section id="experience" class="wl-section">
+    <div class="container wl-wrap">
+        <header class="wl-section-head"><h2 class="wl-h2">Experience</h2></header>
+        <ol class="wl-timeline">
+            {{ range .Site.Params.experience.items }}
+            {{ $company := .company }}{{ $url := .companyUrl }}
+            {{ range .jobs }}
+            <li class="wl-row">
+                <p class="wl-date">{{ .date }}</p>
+                <div class="wl-row-body">
+                    <h3 class="wl-row-title">{{ .name }}<span class="wl-at">{{ if $url }}<a href="{{ $url }}" target="_blank" rel="noopener">{{ $company }}</a>{{ else }}{{ $company }}{{ end }}</span></h3>
+                    <div class="wl-prose">{{ .content | markdownify }}</div>
+                </div>
+            </li>
+            {{ end }}
+            {{ end }}
+        </ol>
+    </div>
+</section>
+{{ end }}

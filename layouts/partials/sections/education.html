@@ -1,0 +1,18 @@
+{{ if .Site.Params.education.enable | default false }}
+<section id="education" class="wl-section">
+    <div class="container wl-wrap">
+        <header class="wl-section-head"><h2 class="wl-h2">Education</h2></header>
+        <ol class="wl-timeline">
+            {{ range .Site.Params.education.items }}
+            <li class="wl-row">
+                <p class="wl-date">{{ .date }}</p>
+                <div class="wl-row-body">
+                    <h3 class="wl-row-title">{{ .title }}<span class="wl-at">{{ with .school.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}{{ .school.name }}{{ with .school.url }}</a>{{ end }}</span></h3>
+                    <div class="wl-prose">{{ .content | markdownify }}</div>
+                </div>
+            </li>
+            {{ end }}
+        </ol>
+    </div>
+</section>
+{{ end }}

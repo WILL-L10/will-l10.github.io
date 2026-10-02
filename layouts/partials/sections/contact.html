@@ -1,0 +1,13 @@
+{{ with .Site.Params.contact }}{{ if .enable }}
+<section id="contact" class="wl-section wl-contact">
+    <div class="container wl-wrap">
+        <h2 class="wl-h2">{{ .title }}</h2>
+        <p class="wl-contact-text">{{ .content }}</p>
+        <div class="wl-actions">
+            <a class="wl-btn wl-btn-primary" href="mailto:{{ .email }}">{{ .btnName }}</a>
+            <a class="wl-btn" href="https://www.linkedin.com/in/william-lazcano-garcia-84b5313b3/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+        </div>
+        <p class="wl-email">{{ .email }}</p>
+    </div>
+</section>
+{{ end }}{{ end }}

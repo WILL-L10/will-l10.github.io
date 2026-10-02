@@ -12,7 +12,7 @@ image: /images/projects/construction1.jpg
 description: "6+ years of hands-on residential construction experience — electrical wiring, hardwood flooring, and full bathroom renovations."
 toc: true
 weight: 7
-category: "Hands-On Electrical"
+category: "Hands-on electrical work"
 summary: "6+ years of residential electrical, flooring, and full bathroom renovations with my family's business."
 ---
 

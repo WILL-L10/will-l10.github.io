@@ -6,7 +6,7 @@ description: "Modeled a 3S2P Li-ion battery pack across C++, LTspice, and Verilo
 image: /images/projects/battery.jpg
 tags: ["C++", "LTspice", "Verilog", "Circuit Analysis", "EE 220"]
 weight: 6
-category: "Circuits · Simulation"
+category: "Circuits and simulation"
 summary: "Modeled a 3S2P Li-ion pack in C++, LTspice, and Verilog; all three platforms agreed within 1%."
 ---
 

@@ -1,0 +1,28 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Description }}">
+<script defer src="{{ .Site.Params.staticPath }}/fontawesome-6/all-6.4.2.js"></script>
+{{ end }}
+{{ define "title" }}Projects | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<section class="wl-section wl-list">
+    <div class="container wl-wrap">
+        <header class="wl-section-head">
+            <h1 class="wl-h2">Projects</h1>
+            <p class="wl-section-sub">Every write-up in one place.</p>
+        </header>
+        <div class="wl-grid">
+            {{ range .Pages.ByWeight }}
+            <a class="wl-card" href="{{ .RelPermalink }}">
+                <div class="wl-card-img"><img src="{{ .Params.image }}" alt="" loading="lazy"></div>
+                <div class="wl-card-body">
+                    {{ with .Params.category }}<p class="wl-cat">{{ . }}</p>{{ end }}
+                    <h2 class="wl-card-title">{{ .Title }}</h2>
+                    <p class="wl-card-desc">{{ .Params.summary | default .Description }}</p>
+                    <ul class="wl-tags">{{ range first 4 .Params.tags }}<li>{{ . }}</li>{{ end }}</ul>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

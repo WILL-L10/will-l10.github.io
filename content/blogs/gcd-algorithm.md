@@ -12,7 +12,7 @@ image: /images/projects/gcd-rtl-cover.jpg
 description: "Implemented the Euclidean GCD algorithm in hardware using a finite state machine — deployed on FPGA with real-time switch input and 7-segment output."
 toc: true
 weight: 5
-category: "Digital Design · FSM"
+category: "Digital design and timing"
 summary: "Turned Euclid's GCD algorithm into a hardware datapath and FSM controller, then debugged a real timing violation in TimeQuest."
 ---
 
@@ -48,15 +48,14 @@ while (a ≠ b):
 return a
 ```
 
-**Example — GCD(48, 18):**
+**Example — GCD(24, 18):**
 
 | Step | a | b | Operation |
 |---|---|---|---|
-| 0 | 48 | 18 | a > b → a = 30 |
-| 1 | 30 | 18 | a > b → a = 12 |
-| 2 | 12 | 18 | a < b → b = 6 |
-| 3 | 12 | 6 | a > b → a = 6 |
-| 4 | 6 | 6 | a = b → **GCD = 6** |
+| 0 | 24 | 18 | a > b → a = 6 |
+| 1 | 6 | 18 | a < b → b = 12 |
+| 2 | 6 | 12 | a < b → b = 6 |
+| 3 | 6 | 6 | a = b → **GCD = 6** |
 
 ---
 

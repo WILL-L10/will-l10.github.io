@@ -13,7 +13,7 @@ image: /images/projects/processor-board.jpg
 description: "Designed a complete 8-bit multicycle processor from scratch — custom ISA, FSM control unit, and full FPGA deployment on the Altera DE2-115."
 toc: true
 weight: 2
-category: "Computer Architecture · FPGA"
+category: "Computer architecture on FPGA"
 summary: "Designed an 8-bit multicycle CPU from scratch: custom 16-instruction ISA, FSM control unit, running 2×2 matrix math on a DE2-115."
 ---
 

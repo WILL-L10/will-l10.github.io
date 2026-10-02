@@ -6,7 +6,7 @@ description: "Built a live aircraft surveillance system from a $30 software-defi
 image: /images/projects/sdr-adsb.jpg
 tags: ["RF", "Software Defined Radio", "ADS-B", "Python", "Signal Processing"]
 weight: 1
-category: "RF · Software Defined Radio"
+category: "RF and software-defined radio"
 summary: "Built a 1090 MHz receive chain with an RTL-SDR to decode live aircraft transponder signals and track flights over Las Vegas in real time."
 ---
 

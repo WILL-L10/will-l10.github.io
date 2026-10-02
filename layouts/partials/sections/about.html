@@ -1,0 +1,20 @@
+{{ with .Site.Params.about }}{{ if .enable }}
+<section id="about" class="wl-section">
+    <div class="container wl-wrap">
+        <header class="wl-section-head"><h2 class="wl-h2">{{ .title }}</h2></header>
+        <div class="wl-about-grid">
+            <div class="wl-prose wl-about-text">{{ .content | markdownify }}</div>
+            {{ with .image }}<figure class="wl-about-photo"><img src="{{ . }}" alt="My Altera DE2-115 FPGA board on the lab bench"></figure>{{ end }}
+        </div>
+        {{ if .skills.enable }}
+        <h3 class="wl-h3">{{ .skills.title }}</h3>
+        <dl class="wl-skills">
+            {{ range .skills.items }}
+            {{ $parts := split . ": " }}
+            <div class="wl-skill"><dt>{{ index $parts 0 }}</dt><dd>{{ delimit (after 1 $parts) ": " }}</dd></div>
+            {{ end }}
+        </dl>
+        {{ end }}
+    </div>
+</section>
+{{ end }}{{ end }}

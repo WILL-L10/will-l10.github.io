@@ -1,23 +1,33 @@
-{{ $pages := where .Site.RegularPages "Section" "blogs" }}
+{{ $pages := (where .Site.RegularPages "Section" "blogs").ByWeight }}
 {{ if $pages }}
-<section id="projects" class="pg-section">
-    <div class="container">
-        <h3 class="text-center pg-heading">Projects</h3>
-        <p class="text-center pg-sub">Hardware I've designed, built, and verified. Click any project for the full write-up.</p>
-        <div class="pg-grid">
-            {{ range $pages.ByWeight }}
-            <a class="pg-card" href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
-                <div class="pg-img">
-                    <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
-                </div>
-                <div class="pg-body">
-                    {{ with .Params.category }}<span class="pg-kicker">{{ . }}</span>{{ end }}
-                    <h4 class="pg-title">{{ .Title }}</h4>
-                    <p class="pg-desc">{{ .Params.summary | default .Description }}</p>
-                    <div class="pg-tags">
-                        {{ range first 4 .Params.tags }}<span>{{ . }}</span>{{ end }}
-                    </div>
-                    <span class="pg-more">Read write-up &rarr;</span>
+<section id="projects" class="wl-section">
+    <div class="container wl-wrap">
+        <header class="wl-section-head">
+            <h2 class="wl-h2">Projects</h2>
+            <p class="wl-section-sub">Hardware I've designed, built, and verified. Each one links to a full write-up with code, waveforms, and photos.</p>
+        </header>
+
+        {{ with index $pages 0 }}
+        <a class="wl-feature" href="{{ .RelPermalink }}">
+            <div class="wl-feature-img"><img src="{{ .Params.image }}" alt="" loading="lazy"></div>
+            <div class="wl-feature-body">
+                {{ with .Params.category }}<p class="wl-cat">{{ . }}</p>{{ end }}
+                <h3 class="wl-card-title wl-feature-title">{{ .Title }}</h3>
+                <p class="wl-card-desc">{{ .Params.summary | default .Description }}</p>
+                <ul class="wl-tags">{{ range .Params.tags }}<li>{{ . }}</li>{{ end }}</ul>
+            </div>
+        </a>
+        {{ end }}
+
+        <div class="wl-grid">
+            {{ range after 1 $pages }}
+            <a class="wl-card" href="{{ .RelPermalink }}">
+                <div class="wl-card-img"><img src="{{ .Params.image }}" alt="" loading="lazy"></div>
+                <div class="wl-card-body">
+                    {{ with .Params.category }}<p class="wl-cat">{{ . }}</p>{{ end }}
+                    <h3 class="wl-card-title">{{ .Title }}</h3>
+                    <p class="wl-card-desc">{{ .Params.summary | default .Description }}</p>
+                    <ul class="wl-tags">{{ range first 4 .Params.tags }}<li>{{ . }}</li>{{ end }}</ul>
                 </div>
             </a>
             {{ end }}

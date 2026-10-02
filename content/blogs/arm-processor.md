@@ -12,7 +12,7 @@ image: /images/projects/arm-wave.jpg
 description: "Single-cycle ARM processor with extended instruction set — added EOR and LDRB to a standard ARM core and deployed on FPGA."
 toc: true
 weight: 3
-category: "Computer Architecture"
+category: "Computer architecture"
 summary: "Extended a single-cycle ARM core with EOR and LDRB, modifying the ALU, decoders, and memory path, then verified in ModelSim."
 ---
 
