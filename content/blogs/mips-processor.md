@@ -14,6 +14,7 @@ toc: true
 weight: 4
 category: "Computer architecture"
 summary: "Added JAL and JR to a single-cycle MIPS CPU so it can call and return from subroutines, proven with an assembly test program."
+images: ["/images/projects/mips-wave.jpg"]
 ---
 
 ## Overview

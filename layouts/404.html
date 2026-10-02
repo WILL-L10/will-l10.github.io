@@ -1,0 +1,14 @@
+{{ define "head" }}{{ end }}
+{{ define "title" }}Page not found | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<section class="wl-section wl-list wl-404">
+    <div class="container wl-wrap">
+        <h1 class="wl-h2">This page doesn't exist</h1>
+        <p class="wl-section-sub">The link may be old, or the address may have a typo.</p>
+        <div class="wl-actions" style="margin-top:28px">
+            <a class="wl-btn wl-btn-primary" href="/">Go to the homepage</a>
+            <a class="wl-btn" href="/blogs/">See all projects</a>
+        </div>
+    </div>
+</section>
+{{ end }}

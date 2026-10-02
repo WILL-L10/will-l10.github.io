@@ -14,6 +14,7 @@ toc: true
 weight: 3
 category: "Computer architecture"
 summary: "Extended a single-cycle ARM core with EOR and LDRB, modifying the ALU, decoders, and memory path, then verified in ModelSim."
+images: ["/images/projects/arm-wave.jpg"]
 ---
 
 ## Overview

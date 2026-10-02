@@ -15,6 +15,7 @@ toc: true
 weight: 2
 category: "Computer architecture on FPGA"
 summary: "Designed an 8-bit multicycle CPU from scratch: custom 16-instruction ISA, FSM control unit, running 2×2 matrix math on a DE2-115."
+images: ["/images/projects/processor-board.jpg"]
 ---
 
 ## Overview

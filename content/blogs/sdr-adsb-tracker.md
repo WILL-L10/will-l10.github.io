@@ -8,6 +8,7 @@ tags: ["RF", "Software Defined Radio", "ADS-B", "Python", "Signal Processing"]
 weight: 1
 category: "RF and software-defined radio"
 summary: "Built a 1090 MHz receive chain with an RTL-SDR to decode live aircraft transponder signals and track flights over Las Vegas in real time."
+images: ["/images/projects/sdr-adsb.jpg"]
 ---
 
 ## Overview

@@ -1,6 +1,6 @@
 baseURL: "https://will-l10.github.io/"
 languageCode: "en-us"
-title: "William Lazcano | Computer & Electrical Engineering"
+title: "William Lazcano | Electrical & Computer Engineering"
 theme: "hugo-profile"
 googleAnalytics: "G-PHJQPKKS3F"
 
@@ -42,7 +42,8 @@ menu:
 
 params:
   title: "William Lazcano"
-  description: Computer & Electrical Engineering Student at UNLV
+  description: "Electrical & computer engineering student at UNLV building custom CPUs on FPGAs, software-defined radio receivers, and real-world electrical systems. Seeking Summer 2027 internships."
+  images: ["/images/og-card.jpg"]
   favicon: "/images/favicon.png"
 
   useBootstrapCDN: false

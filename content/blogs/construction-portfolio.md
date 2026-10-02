@@ -14,6 +14,7 @@ toc: true
 weight: 7
 category: "Hands-on electrical work"
 summary: "6+ years of residential electrical, flooring, and full bathroom renovations with my family's business."
+images: ["/images/projects/construction1.jpg"]
 ---
 
 ## Overview

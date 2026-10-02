@@ -14,6 +14,7 @@ toc: true
 weight: 5
 category: "Digital design and timing"
 summary: "Turned Euclid's GCD algorithm into a hardware datapath and FSM controller, then debugged a real timing violation in TimeQuest."
+images: ["/images/projects/gcd-rtl-cover.jpg"]
 ---
 
 ## Overview

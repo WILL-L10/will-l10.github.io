@@ -279,3 +279,4 @@ body #single .page-content table > thead > tr, body #single .page-content table 
 /* name stays silkscreen-white; gold is reserved for accents */
 #hero .wl-name, .wl-name { color: var(--silk) !important; }
 #about .wl-h3, .wl-h3 { color: var(--silk) !important; }
+.wl-404 { min-height: 60vh; border-bottom: 0; }
