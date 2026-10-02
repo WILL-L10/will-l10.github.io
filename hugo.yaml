@@ -102,7 +102,7 @@ params:
 
       When I'm not in the lab or on a job site, I'm snowboarding, at the gym, or hanging out with my Australian Shepherd, Luna. I'm a native Spanish speaker and fluent in English.
 
-      **Currently seeking:** Summer 2026 internships in hardware design, embedded systems, or electrical engineering.
+      **Currently seeking:** Summer 2027 internships in hardware design, embedded systems, or electrical engineering.
     skills:
       enable: true
       title: "Technical Skills:"
@@ -211,7 +211,7 @@ params:
   contact:
     enable: true
     title: "Get in Touch"
-    content: I'm actively looking for Summer 2026 engineering internships in hardware design, embedded systems, or electrical engineering. If you think I'd be a good fit for your team, I'd love to connect.
+    content: I'm actively looking for Summer 2027 engineering internships in hardware design, embedded systems, or electrical engineering. If you think I'd be a good fit for your team, I'd love to connect.
     email: garciw8@unlv.nevada.edu
     btnName: "Email Me"
 
