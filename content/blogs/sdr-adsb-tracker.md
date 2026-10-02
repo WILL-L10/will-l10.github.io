@@ -64,12 +64,10 @@ The V4 uses a newer tuner (R828D) than older RTL-SDR dongles, so stock drivers d
 | 2 | **RTL-SDR Blog V1.4.0 release** | Swapped `rtlsdr.dll` in SDR# for the V4-compatible build |
 | 3 | **`rtl_test`** | Verified the hardware from the command line |
 
-```text
-> rtl_test
-...
-RTL-SDR Blog V4 Detected
-Found Rafael Micro R828D tuner
-```
+<figure>
+  <img src="/images/projects/sdr/rtl-test.png" alt="rtl_test output showing RTL-SDR Blog V4 detected with R828D tuner" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px"><code>rtl_test</code> confirms the RTL2832U + R828D tuner are up on WinUSB drivers, sampling at 2.048 MS/s with 29 supported gain steps.</figcaption>
+</figure>
 
 **Lesson learned:** most "it doesn't work" problems with SDR hardware are driver problems, not hardware problems. Isolating the driver layer with a command-line test before opening any GUI saved a lot of guesswork.
 
@@ -91,13 +89,22 @@ ADS-B frames are short (56 or 112 bits), pulse-position-modulated bursts at 1 Mb
 rtl_adsb -V > planes.txt
 ```
 
-In **2 minutes** this captured **1,175 ADS-B messages** from Las Vegas airspace. Each line looks like:
+In **2 minutes** this captured **1,175 ADS-B messages** from Las Vegas airspace.
+
+<figure>
+  <img src="/images/projects/sdr/rtl-adsb.png" alt="rtl_adsb -V output streaming raw Mode S frames at 1090 MHz" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Live <code>rtl_adsb -V</code> output tuned to 1090 MHz. Each block is one raw Mode S frame with its decoded downlink format, capability, and ICAO address.</figcaption>
+</figure>
+
+Taking one real frame from the capture apart:
 
 ```text
-*8DAD36A858...;
- └┬┘└──┬──┘
-  │    └── ICAO 24-bit aircraft address (AD36A8 = SWA4282)
-  └─────── Downlink Format 17 (ADS-B extended squitter)
+*8da7888c990cf287308e064b47ed;
+ ├┘├────┘├────────────┘├────┘
+ │ │     │             └── 24-bit parity (PI=0x4b47ed)
+ │ │     └── 56-bit ME field, Type Code 19 = airborne velocity
+ │ └── ICAO address a7888c
+ └── 0x8D → DF=17 (ADS-B), CA=5
 ```
 
 ### Decoding the frame header
@@ -106,8 +113,8 @@ In **2 minutes** this captured **1,175 ADS-B messages** from Las Vegas airspace.
 |------|-------|---------|---------|
 | 1–5 | DF (Downlink Format) | `10001` = 17 | ADS-B extended squitter |
 | 6–8 | CA (Capability) | `101` | Transponder level |
-| 9–32 | ICAO address | `AD36A8` | Unique airframe ID |
-| 33–88 | ME (message) | varies | Position, velocity, or ID |
+| 9–32 | ICAO address | `A7888C` | Unique airframe ID |
+| 33–88 | ME (message) | Type Code 19 | Position, velocity, or ID |
 | 89–112 | Parity | CRC-24 | Error detection |
 
 ---
@@ -150,6 +157,11 @@ dump1090 --interactive --net
 # terminal table + live map at http://localhost:8080
 ```
 
+<figure>
+  <img src="/images/projects/sdr/dump1090-terminal.png" alt="dump1090 interactive terminal table showing VIV113" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">dump1090's interactive table: VIV113 (hex <code>0d0f35</code>) at 3,425 ft and 173 kt, alongside SWA4282's first contact (<code>ad36a8</code>).</figcaption>
+</figure>
+
 ### Aircraft tracked live (October 1, 2026)
 
 | Callsign | ICAO | Altitude | Speed | Aircraft |
@@ -158,7 +170,26 @@ dump1090 --interactive --net
 | **N40EP** | `A4AABA` | 15,725 ft | 188.8 kt | Cessna Citation II, operating near Nellis AFB |
 | **VIV113** | — | 3,425 ft | 173 kt | Low-altitude traffic |
 
-The live map showed each aircraft's position, heading, altitude, speed, and GPS coordinates, with Nellis Air Force Base visible on the map near the private-jet traffic.
+The live map showed each aircraft's position, altitude, speed, and GPS coordinates:
+
+<figure>
+  <img src="/images/projects/sdr/map-swa4282.jpg" alt="dump1090 live map tracking SWA4282 over Las Vegas" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">SWA4282 (Southwest, ICAO <code>ad36a8</code>) at 38,275 ft and 498 kt, decoded position 36.1097, −115.3709 over the west valley.</figcaption>
+</figure>
+
+<figure>
+  <img src="/images/projects/sdr/map-n40ep-nellis.jpg" alt="dump1090 live map tracking N40EP near Nellis Air Force Base" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">N40EP (ICAO <code>a4aaba</code>) at 3,750 ft and 162 kt, position 36.2138, −115.2272, with Nellis Air Force Base on the northeast side of the valley.</figcaption>
+</figure>
+
+### Aircraft identification with Virtual Radar Server
+
+Feeding the same decoder output into **Virtual Radar Server** adds an aircraft database lookup by ICAO address, turning a hex code into a registered airframe:
+
+<figure>
+  <img src="/images/projects/sdr/n40ep-detail.png" alt="Virtual Radar Server detail panel for N40EP, a Cessna Citation II" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Virtual Radar Server resolves ICAO <code>A4AABA</code> to N40EP, a Cessna Citation II (C551) operated by La Mansion Aviation Inc, at 15,725 ft, 188.8 kt, squawk 4657. Photos via airport-data.com / airliners.net lookup.</figcaption>
+</figure>
 
 ---
 
@@ -171,6 +202,7 @@ The live map showed each aircraft's position, heading, altitude, speed, and GPS 
 | Zadig | 2.9.788 | WinUSB driver install |
 | rtl_adsb | — | Raw ADS-B frame capture |
 | dump1090 | Windows build | Full Mode S decode + web map |
+| Virtual Radar Server | — | Aircraft database lookup & tracking UI |
 | Python | 3.14 | Data processing |
 | pandas / folium | — | Parsing & map visualization |
 | .NET Runtime | 9.0 | Required by SDR# |
