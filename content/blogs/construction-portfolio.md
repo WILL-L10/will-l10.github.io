@@ -11,6 +11,9 @@ tags:
 image: /images/projects/construction1.jpg
 description: "6+ years of hands-on residential construction experience — electrical wiring, hardwood flooring, and full bathroom renovations."
 toc: true
+weight: 7
+category: "Hands-On Electrical"
+summary: "6+ years of residential electrical, flooring, and full bathroom renovations with my family's business."
 ---
 
 ## Overview
@@ -96,6 +99,16 @@ Then: layout planning, straight chalk lines, face-nail first row, blind-nail at 
 
 ## Bathroom Renovations
 
+<figure>
+  <img src="/images/projects/construction1.jpg" alt="Bathroom renovation in progress: vanity and fixture installation" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Bathroom renovation in progress: vanity and fixture installation</figcaption>
+</figure>
+
+<figure>
+  <img src="/images/projects/construction2.jpg" alt="Completed bathroom renovation" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Completed bathroom renovation</figcaption>
+</figure>
+
 **Count:** 8 complete gut renovations.
 
 ### Full Scope Example
@@ -165,4 +178,4 @@ I don't just know how circuits work on paper. I've installed them, tested them, 
 
 ---
 
-**Contact:** [LinkedIn](https://linkedin.com/in/williamlazcano) | [Email](mailto:williamgarcia050604@icloud.com)
+**Contact:** [LinkedIn](https://www.linkedin.com/in/william-lazcano-garcia-84b5313b3/) | [Email](mailto:garciw8@unlv.nevada.edu)

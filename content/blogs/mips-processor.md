@@ -8,9 +8,12 @@ tags:
   - FPGA
   - SystemVerilog
   - Digital Design
-image: /images/projects/mips.jpg
+image: /images/projects/mips-wave.jpg
 description: "Single-cycle MIPS processor extended with JAL and JR instructions to enable full subroutine call and return support."
 toc: true
+weight: 4
+category: "Computer Architecture"
+summary: "Added JAL and JR to a single-cycle MIPS CPU so it can call and return from subroutines, proven with an assembly test program."
 ---
 
 ## Overview
@@ -213,18 +216,12 @@ end
 
 ---
 
-## Timing & Resource Utilization
+## Simulation Run
 
-```
-Critical Path:          23.5 ns → Initial: 42.6 MHz
-After optimization:     19.1 ns → 52.3 MHz ✓
-
-Resource Usage (Cyclone IV E):
-  Logic Elements       2,847 / 114,480   (2.5%)
-  Dedicated Registers  1,088 / 114,480
-  Memory Bits          8,192 / 3,981,312
-  PLLs                 1 / 4
-```
+<figure>
+  <img src="/images/projects/mips-sim.png" alt="ModelSim simulation showing JAL and JR control flow" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">ModelSim run of the subroutine test. Follow the <code>pc</code> trace: 0 → 4 → <b>8 (jal)</b> → <b>24</b> → 28 → <b>32 (jr)</b> → <b>12</b>. The processor jumps into the subroutine and returns to the instruction after the call, then writes 80 to memory.</figcaption>
+</figure>
 
 ---
 

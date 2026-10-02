@@ -5,6 +5,9 @@ draft: false
 description: "Built a live aircraft surveillance system from a $30 software-defined radio — receiving 1090 MHz ADS-B transponder signals over Las Vegas and plotting callsign, altitude, speed, and position on a live map."
 image: /images/projects/sdr-adsb.jpg
 tags: ["RF", "Software Defined Radio", "ADS-B", "Python", "Signal Processing"]
+weight: 1
+category: "RF · Software Defined Radio"
+summary: "Built a 1090 MHz receive chain with an RTL-SDR to decode live aircraft transponder signals and track flights over Las Vegas in real time."
 ---
 
 ## Overview

@@ -8,9 +8,12 @@ tags:
   - FPGA
   - Verilog
   - Digital Design
-image: /images/projects/arm.jpg
+image: /images/projects/arm-wave.jpg
 description: "Single-cycle ARM processor with extended instruction set — added EOR and LDRB to a standard ARM core and deployed on FPGA."
 toc: true
+weight: 3
+category: "Computer Architecture"
+summary: "Extended a single-cycle ARM core with EOR and LDRB, modifying the ALU, decoders, and memory path, then verified in ModelSim."
 ---
 
 ## Overview
@@ -192,21 +195,14 @@ BEQ  pass
 
 ---
 
-## Timing & Resource Utilization
+## Simulation Run
 
-```
-Critical Path:
-  Register File Read    2.5 ns
-  ALU Computation       8.2 ns
-  Memory Access         5.1 ns
-  Register Write Setup  2.1 ns
-  Total                17.9 ns → Max freq: 55.8 MHz ✓
+<figure>
+  <img src="/images/projects/arm-sim.png" alt="ModelSim simulation of the extended ARM processor" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Full ModelSim run of the extended ARM core on the custom <code>memfile2.dat</code> program: <code>WriteData</code>, <code>DataAdr</code>, and <code>MemWrite</code> waveforms on top, with a per-cycle PC/instruction trace in the transcript.</figcaption>
+</figure>
 
-Resource Usage (Cyclone IV E):
-  Logic Elements       3,487 / 114,480   (3.0%)
-  Dedicated Registers  1,152 / 114,480
-  Memory Bits         16,384 / 3,981,312
-```
+**The bug that taught me the most:** my first EOR implementation produced the wrong ALU output in simulation. The decoder was still treating ALU control as 2 bits, so the new `100` encoding never reached the ALU. Fixing the decoder truth table and re-running the testbench showed every instruction encoding correctly.
 
 ---
 

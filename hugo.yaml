@@ -24,9 +24,21 @@ markup:
 
 menu:
   main:
-    - name: Blog
-      url: /blogs/
+    - name: Projects
+      url: /#projects
       weight: 1
+    - name: Experience
+      url: /#experience
+      weight: 2
+    - name: About
+      url: /#about
+      weight: 3
+    - name: Education
+      url: /#education
+      weight: 4
+    - name: Contact
+      url: /#contact
+      weight: 5
 
 params:
   title: "William Lazcano"
@@ -40,12 +52,12 @@ params:
     sticky: true
     disableSearch: false
     menus:
-      disableAbout: false
-      disableExperience: false
-      disableEducation: false
+      disableAbout: true
+      disableExperience: true
+      disableEducation: true
       disableProjects: true
-      disableAchievements: false
-      disableContact: false
+      disableAchievements: true
+      disableContact: true
 
   color:
     textColor: "#343a40"
@@ -67,8 +79,8 @@ params:
     enable: true
     intro: "Hi, I'm"
     title: "William Lazcano"
-    subtitle: "I design processors from scratch and build things that last"
-    content: "Computer & Electrical Engineering dual major at UNLV. I design custom processors in SystemVerilog, deploy them on real FPGA hardware, and bring the same precision and hands-on mindset from 6+ years of construction work. I'm looking for an engineering internship where I can contribute from day one."
+    subtitle: "I build hardware, from custom CPUs on FPGAs to software-defined radio receivers."
+    content: "Computer & Electrical Engineering dual major at UNLV (Class of 2028). I write SystemVerilog that runs on real FPGA hardware, decode live RF signals with SDR, and bring 6+ years of hands-on electrical work to every project. **Seeking Summer 2027 internships** in hardware, embedded, or RF engineering."
     image: /images/profile.jpg
     bottomImage:
       enable: true
@@ -94,7 +106,7 @@ params:
   about:
     enable: true
     title: "About Me"
-    image: "/images/about.jpg"
+    image: "/images/de2-115-lab.jpg"
     content: |-
       I'm a Computer & Electrical Engineering dual major at UNLV with a deep interest in how hardware actually works — not just in simulation, but on real silicon. I've designed and deployed custom processors on FPGA, built FSM-based control units from the ground up, and written SystemVerilog that runs on physical hardware at 50 MHz.
 
@@ -114,6 +126,7 @@ params:
         - "RF & SDR: RTL-SDR, ADS-B / Mode S decoding, spectrum analysis"
         - "Programming: C++, Python (pandas, folium), data structures, algorithms"
         - "Electrical: NEC-compliant wiring, circuit analysis, load calculations"
+        - "Tools: Git, Linux / command line, LTspice"
         - "Languages: Spanish (Native), English (Fluent)"
 
   experience:
@@ -179,22 +192,14 @@ params:
           - Computer Systems & Organization
           - Circuit Analysis
 
-          **Projects:** Real-Time ADS-B Aircraft Tracker (RTL-SDR), Custom 8-bit Multicycle Processor, ARM Processor with Extended ISA, MIPS Processor with Subroutine Support, GCD Hardware Implementation
+          **Key lab work:** Custom 8-bit multicycle processor (CPE 300L final), ARM and MIPS ISA extensions, FSM datapath design, timing analysis in TimeQuest
 
-      - title: "High School Diploma"
-        school:
-          name: "Doral Academy Red Rock High School"
-          url: ""
-        date: "2018 - 2022"
-        content: |-
-          - Honors and AP coursework
-          - Class of 2022
 
   projects:
     enable: false
 
   achievements:
-    enable: true
+    enable: false
     items:
       - title: "Custom Processor Built from Scratch"
         content: "Designed a complete 8-bit multicycle processor with a custom 16-instruction ISA, FSM-based control unit, and full FPGA deployment — no starter code, no shortcuts."
@@ -220,7 +225,7 @@ params:
       path: "blogs"
       count: 8
       title: Projects
-      enable: true
+      enable: false
       disableFeaturedImage: false
     socialNetworks:
       github: https://github.com/Will-L10

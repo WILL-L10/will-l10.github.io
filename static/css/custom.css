@@ -1,0 +1,132 @@
+/* ---------- Hero: remove the empty full-screen gap ---------- */
+#hero {
+    min-height: auto !important;
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
+}
+#hero h2 {
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    line-height: 1.25;
+}
+#hero .hero-bottom-svg { display: none !important; }
+
+/* ---------- Section rhythm ---------- */
+#experience, #about, #education, #contact { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+
+/* ---------- Project grid ---------- */
+.pg-section { padding: 3.5rem 0; }
+.pg-heading { margin-bottom: .4rem; }
+.pg-sub {
+    color: var(--text-secondary-color);
+    max-width: 560px;
+    margin: 0 auto 2.25rem;
+    font-size: .98rem;
+}
+.pg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    padding: 0 .5rem;
+}
+.pg-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--secondary-background-color);
+    border: 1px solid rgba(127, 127, 127, .18);
+    border-radius: 12px;
+    overflow: hidden;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.pg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .28);
+    border-color: rgba(127, 127, 127, .4);
+}
+.pg-img {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: #0c1218;
+}
+.pg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .35s ease;
+}
+.pg-card:hover .pg-img img { transform: scale(1.04); }
+.pg-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.1rem 1.2rem 1.2rem;
+    background: transparent !important;
+}
+.pg-kicker {
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-secondary-color);
+    margin-bottom: .35rem;
+    background: transparent !important;
+}
+.pg-title {
+    font-size: 1.12rem;
+    line-height: 1.35;
+    margin: 0 0 .55rem;
+    background: transparent !important;
+}
+.pg-desc {
+    font-size: .92rem;
+    line-height: 1.55;
+    color: var(--text-secondary-color);
+    margin: 0 0 .9rem;
+    flex: 1;
+    background: transparent !important;
+}
+.pg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+    margin-bottom: .9rem;
+    background: transparent !important;
+}
+.pg-tags span {
+    font-size: .72rem;
+    padding: .2rem .55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(127, 127, 127, .35);
+    color: var(--text-secondary-color);
+    background: transparent !important;
+}
+.pg-more {
+    font-size: .88rem;
+    font-weight: 600;
+    background: transparent !important;
+}
+
+@media (max-width: 991px) { .pg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+    .pg-grid { grid-template-columns: 1fr; gap: 1.1rem; padding: 0; }
+    #hero { padding-top: 5rem !important; }
+}
+
+/* ---------- About: rectangular hardware photo, roomier skills ---------- */
+#about .image img {
+    border-radius: 12px !important;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+#about ul { grid-template-columns: repeat(2, minmax(160px, 1fr)) !important; max-width: 640px; }
+
+/* tighten inner row padding the theme adds */
+#about > .container > .row, #education > .container > .row { padding-top: 1.5rem !important; padding-bottom: 1rem !important; }
+
+/* smaller headshot on phones so projects appear sooner */
+@media (max-width: 991px) {
+    #hero .image { padding-top: 1.5rem !important; }
+    #hero .image img { max-width: 200px; }
+}

@@ -8,9 +8,12 @@ tags:
   - FPGA
   - FSM
   - Algorithm Design
-image: /images/projects/gcd.jpg
+image: /images/projects/gcd-rtl-cover.jpg
 description: "Implemented the Euclidean GCD algorithm in hardware using a finite state machine — deployed on FPGA with real-time switch input and 7-segment output."
 toc: true
+weight: 5
+category: "Digital Design · FSM"
+summary: "Turned Euclid's GCD algorithm into a hardware datapath and FSM controller, then debugged a real timing violation in TimeQuest."
 ---
 
 ## Overview
@@ -24,12 +27,12 @@ It's a foundational exercise in the difference between software and hardware des
 | Feature | Detail |
 |---|---|
 | Algorithm | Euclidean subtraction method |
-| Data Width | 8-bit inputs/output |
+| Data Width | 5-bit inputs (`a_in[4:0]`, `b_in[4:0]`) |
 | Architecture | FSM-based datapath |
-| Input Range | 0–255 |
+| Input Range | 1–31 |
 | Platform | Altera DE2-115 FPGA |
 | Clock Speed | 50 MHz |
-| Max Latency | 255 cycles (worst case) |
+| Output | Result on two seven-segment displays (HEX1–HEX0) |
 | Language | Verilog HDL |
 
 ---
@@ -85,20 +88,31 @@ IDLE → LOAD → COMP
 
 ---
 
+## Synthesized Design
+
+Quartus's RTL viewer shows the clean split between the controller and the datapath: the FSM only produces control signals (`load_a`, `load_b`, `sub_a`, `sub_b`), and the datapath feeds back status flags (`eq`, `gt`).
+
+<figure>
+  <img src="/images/projects/gcd-rtl.png" alt="Quartus RTL view of the GCD controller and datapath" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">RTL view of the synthesized design: <code>control:ctrl</code> drives <code>datapath:dp</code>, whose result goes to two <code>hex_display</code> decoders.</figcaption>
+</figure>
+
+---
+
 ## Verilog Implementation
 
 ```verilog
 module gcd_calculator(
     input  wire       clk, reset, start,
-    input  wire [7:0] a_in, b_in,
-    output reg  [7:0] gcd_out,
+    input  wire [4:0] a_in, b_in,
+    output reg  [4:0] gcd_out,
     output reg        done
 );
     localparam IDLE=3'b000, LOAD=3'b001, COMP=3'b010,
                SUB_A=3'b011, SUB_B=3'b100, DONE=3'b101;
 
     reg [2:0] state, next_state;
-    reg [7:0] a, b, next_a, next_b;
+    reg [4:0] a, b, next_a, next_b;
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin state <= IDLE; a <= 0; b <= 0; end
@@ -131,50 +145,53 @@ endmodule
 
 The top-level module connects the GCD calculator to the DE2-115 board hardware:
 
-- `SW[15:8]` — Input A
-- `SW[7:0]` — Input B
-- `KEY[1]` — Start (debounced)
-- `KEY[0]` — Reset
-- `HEX5–HEX4` — Display input A
-- `HEX3–HEX2` — Display input B
-- `HEX1–HEX0` — Display GCD result
-- `LEDG[8]` — Done indicator
+- Switches — Inputs A and B (5 bits each)
+- `KEY` — Start and reset
+- `HEX1–HEX0` — GCD result in hex
 
 ---
 
-## Test Results
+## Example Runs
+
+The subtraction method takes one compare/subtract iteration per step, so latency depends on the inputs:
 
 ```
-✓ GCD( 48,  18) =   6  [4 cycles]
-✓ GCD(100,  35) =   5  [11 cycles]
-✓ GCD( 17,  17) =  17  [1 cycle]
-✓ GCD( 13,   7) =   1  [8 cycles]
-✓ GCD(144,  89) =   1  [144 cycles]  ← Fibonacci worst-case
+GCD(24, 18) = 6    3 subtract steps
+GCD(21, 14) = 7    2 subtract steps
+GCD(17, 13) = 1    7 subtract steps
+GCD(31, 30) = 1   30 subtract steps   ← worst case: one input is much larger than the difference
+GCD(20, 20) = 20   0 subtract steps
 ```
-
-### Performance Over 1000 Random Tests
-
-| Cycle Range | % of Tests |
-|---|---|
-| 1–10 | 34.2% |
-| 11–25 | 28.9% |
-| 26–50 | 20.1% |
-| 51–100 | 12.4% |
-| 100+ | 4.4% |
-| Average | 27.4 cycles |
 
 ---
 
-## Resource Utilization
+## Timing Analysis: Finding and Fixing a Violation
 
-```
-Logic Elements       87  / 114,480   (0.08%)
-Dedicated Registers  27  / 114,480
-Memory Bits           0
-Max Frequency       122 MHz  (target: 50 MHz, slack: +11.8 ns)
-```
+This lab was also my first real timing problem. TimeQuest reported **10 failing setup paths with a worst-case slack of −2.956 ns**, all inside my clock-divider counter, even though simulation passed.
 
-The entire GCD calculator uses 87 logic elements. That's the point — hardware does specific tasks incredibly efficiently when you design for them directly.
+<figure>
+  <img src="/images/projects/gcd-timing-fail.png" alt="TimeQuest report showing negative setup slack" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Before: TimeQuest flags the <code>clock_divider</code> counter paths in red, with worst setup slack −2.956 ns.</figcaption>
+</figure>
+
+Reading the console log revealed the real cause: there was **no clock constraint**, so TimeQuest fell back to `derive_clocks -period 1.0` and analyzed the design as if it ran at 1 GHz. I added the proper constraint for the board's 50 MHz oscillator (`create_clock -period 20.000 -name CLOCK_50`) and re-ran the analysis:
+
+<figure>
+  <img src="/images/projects/gcd-timing-pass.png" alt="TimeQuest report after fixing the timing violation" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">After: 0 violated paths, with worst-case setup slack of <b>+0.291 ns</b> at 50 MHz.</figcaption>
+</figure>
+
+I also built a 16×8 single-port RAM, initialized from a memory file, to practice synchronous read/write timing:
+
+<figure>
+  <img src="/images/projects/gcd-ram-rtl.png" alt="RTL view of the single-port RAM with debouncer and hex decoders" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">RAM test system: button debouncer → single-port RAM → four hex decoders driving the seven-segment displays.</figcaption>
+</figure>
+
+<figure>
+  <img src="/images/projects/gcd-ram-board.jpg" alt="DE2-115 running the RAM test design" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">The RAM design running on the DE2-115.</figcaption>
+</figure>
 
 ---
 
@@ -182,10 +199,10 @@ The entire GCD calculator uses 87 logic elements. That's the point — hardware 
 
 | | Software (Python) | Hardware (Verilog) |
 |---|---|---|
-| Execution | ~100 ns on modern CPU | 20–2880 ns (input-dependent) |
+| Execution | Loop on a general-purpose CPU | One subtract per clock cycle |
 | Latency | Variable, OS-dependent | Fully deterministic |
 | Flexibility | Easy to modify | Fixed after synthesis |
-| Resource use | Entire CPU | 87 logic elements |
+| Resource use | Entire CPU | A few registers, a comparator, and a subtractor |
 
 The hardware wins on determinism. Every call to GCD with the same inputs takes exactly the same number of clock cycles — every single time. That matters in real-time systems.
 

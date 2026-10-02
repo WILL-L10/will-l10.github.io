@@ -9,9 +9,12 @@ tags:
   - Processor Design
   - FSM
   - Digital Systems
-image: /images/projects/processor.jpg
+image: /images/projects/processor-board.jpg
 description: "Designed a complete 8-bit multicycle processor from scratch — custom ISA, FSM control unit, and full FPGA deployment on the Altera DE2-115."
 toc: true
+weight: 2
+category: "Computer Architecture · FPGA"
+summary: "Designed an 8-bit multicycle CPU from scratch: custom 16-instruction ISA, FSM control unit, running 2×2 matrix math on a DE2-115."
 ---
 
 ## Overview
@@ -19,6 +22,11 @@ toc: true
 This was the most ambitious project I've tackled so far: designing a working processor entirely from scratch. No starter code, no skeleton files — just a blank canvas, a specification, and SystemVerilog.
 
 The result is a fully functional 8-bit multicycle CPU with a custom 16-instruction ISA, FSM-based control unit, and real deployment on an Altera DE2-115 FPGA. It successfully executes matrix operations in software using only integer arithmetic.
+
+<figure>
+  <img src="/images/projects/smm-board.jpg" alt="SMM processor running on the Altera DE2-115 FPGA" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">The SMM processor running on the DE2-115. The seven-segment displays show live processor state, and the red LEDs mirror the program-mode switches.</figcaption>
+</figure>
 
 ### Specs at a Glance
 
@@ -174,13 +182,10 @@ A × B = | 21  32 |
 
 Since the processor has no floating-point support, matrix inversion uses fixed-point scaled integers — a deliberate design choice to demonstrate that complex algorithms are achievable in constrained hardware.
 
-### Performance
-
-| Operation | Clock Cycles | Time @ 50 MHz |
-|---|---|---|
-| Matrix Add (2×2) | ~120 | 2.4 μs |
-| Matrix Multiply (2×2) | ~350 | 7.0 μs |
-| Matrix Inversion (2×2) | ~500 | 10.0 μs |
+<figure>
+  <img src="/images/projects/smm-sim-add.jpg" alt="ModelSim simulation of the SMM processor writing matrix results to memory" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">ModelSim run of the matrix-addition program. The transcript shows the results <code>7, 7, 11, 11</code> being written to memory addresses 495–498, exactly matrix C above.</figcaption>
+</figure>
 
 ---
 
@@ -188,19 +193,29 @@ Since the processor has no floating-point support, matrix inversion uses fixed-p
 
 Programming the processor onto real hardware added a layer of complexity beyond simulation. The DE2-115 board gives you 9 switches for address control, 8 for data, red LEDs for feedback, and 8 seven-segment displays showing the PC, opcode, and accumulator in real time.
 
-```
-Resource             Used     Available
-Logic Elements       4,302    114,480
-Dedicated Registers  4,171    114,480
-Memory Bits          4,096    3,981,312
-Utilization: ~3.8%
-```
+| Resource (Cyclone IV E, EP4CE115F29C7) | Used |
+|---|---|
+| Total logic elements | 7,759 |
+| Combinational functions | 4,302 |
+| Dedicated logic registers | 4,171 |
+| Pins | 105 |
+| Embedded 9-bit multipliers | 1 |
+
+<figure>
+  <img src="/images/projects/smm-compile.jpg" alt="Quartus II compilation report for the SMM processor" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Quartus II compilation summary for the full design, including the display logic (top-level entity <code>top_display</code>).</figcaption>
+</figure>
 
 ---
 
 ## Verification
 
 Every instruction was verified in ModelSim before touching the FPGA. Waveform analysis confirmed correct state transitions, control signal generation, and memory operations across all test cases.
+
+<figure>
+  <img src="/images/projects/smm-sim-mult.jpg" alt="ModelSim waveform of the SMM processor" style="max-width:100%;height:auto;border-radius:6px" loading="lazy">
+  <figcaption style="font-size:0.9em;opacity:0.8;margin-top:6px">Waveform view of the testbench: opcode, accumulator, memory output, and write-enable traced cycle by cycle while the program runs.</figcaption>
+</figure>
 
 ```
 ✓ ADD / SUB / MULT / DIV

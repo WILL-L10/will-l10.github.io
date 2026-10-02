@@ -1,0 +1,27 @@
+{{ $pages := where .Site.RegularPages "Section" "blogs" }}
+{{ if $pages }}
+<section id="projects" class="pg-section">
+    <div class="container">
+        <h3 class="text-center pg-heading">Projects</h3>
+        <p class="text-center pg-sub">Hardware I've designed, built, and verified. Click any project for the full write-up.</p>
+        <div class="pg-grid">
+            {{ range $pages.ByWeight }}
+            <a class="pg-card" href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
+                <div class="pg-img">
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+                </div>
+                <div class="pg-body">
+                    {{ with .Params.category }}<span class="pg-kicker">{{ . }}</span>{{ end }}
+                    <h4 class="pg-title">{{ .Title }}</h4>
+                    <p class="pg-desc">{{ .Params.summary | default .Description }}</p>
+                    <div class="pg-tags">
+                        {{ range first 4 .Params.tags }}<span>{{ . }}</span>{{ end }}
+                    </div>
+                    <span class="pg-more">Read write-up &rarr;</span>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
